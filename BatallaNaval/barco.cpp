@@ -5,6 +5,40 @@ Barco::Barco()
 
 }
 
+int Barco::getY() const
+{
+    return Y;
+}
+
+void Barco::setY(int newY)
+{
+    Y = newY;
+}
+
+
+
+int Barco::getX() const
+{
+    return X;
+}
+
+void Barco::setX(int newX)
+{
+    X = newX;
+}
+
+
+int Barco::getVida() const
+{
+    return vida;
+}
+
+void Barco::setVida(int newVida)
+{
+    vida = newVida;
+}
+
+
 int Barco::getTamanio() const
 {
     return tamanio;
@@ -27,6 +61,9 @@ void Barco::setOrientacion(char newOrientacion)
 
 bool Barco::explotado()
 {
+    if (vida=0){
+        return true;
+    }
     //true - false
 }
 

@@ -55,13 +55,26 @@ void Matriz::agregar_barco(Barco *barco)
 {
     int tamanio = barco->getTamanio();
     char orientacion = barco->getOrientacion();
+    int x = barco->getX();
+    int y = barco->getY();
 
-    //char direc;
-
-
-    for (int i=0;i<tamanio;i++){
-        this->matriz[0][i] = 1;
+    switch(orientacion){
+    case 'H':
+        //posicion X HORIZONAL
+            for (int i=0;i<tamanio;i++){
+            this->matriz[y][i] = 1;
+           };
+        break;
+    case 'V':
+        //posicion X VERTICAL
+            for (int i=0;i<tamanio;i++){
+            this->matriz[i][x] = 1;
+    };
+        break;
     }
+
+
+
 }
 
 

@@ -16,6 +16,10 @@ int main()
 
     //CREAR CRUCERO
     Barco *crucero1 = new Crucero;
+    crucero1->setX(1);
+    crucero1->setY(2);
+    crucero1->setOrientacion('H');
+
     //cout<<crucero1->getTamanio();
 
     tablero.agregar_barco(crucero1);
