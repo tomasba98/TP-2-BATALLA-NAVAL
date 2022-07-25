@@ -5,7 +5,7 @@
 class Barco
 {
 private:
-    //int vida;
+    char num;
     int tamanio;
     char orientacion;
     int vida;
@@ -19,13 +19,15 @@ public:
     char getOrientacion() const ;
     void setOrientacion(char) ;
     int getVida() const;
-    void setVida(int newVidas);
-    virtual bool explotado();
-
+    void setVida(int newVidas);    
     int getX() const;
     void setX(int newX);
     int getY() const;
     void setY(int newY);
+    char getNum() const;
+    void setNum(char newNum);
+
+    virtual bool explotado();
 };
 
 #endif // BARCO_H

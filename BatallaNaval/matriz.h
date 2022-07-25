@@ -5,18 +5,17 @@
 class Matriz
 {
 private:
-    int **matriz;
-    int filas = 5;
-    int columnas = 5;
+    char **matriz;
+    int tamanioMatriz = 5;
+
 public:
     Matriz();
-    int getFilas() const;
-    void setFilas(int newFilas);
-    int getColumnas() const;
-    void setColumnas(int newColumnas);
+
     void crear_matriz();
     void mostrar_matriz();
     void agregar_barco(Barco *barco);
+    int getTamanioMatriz() const;
+    void setTamanioMatriz(int newTamanioMatriz);
 };
 
 #endif // MATRIZ_H

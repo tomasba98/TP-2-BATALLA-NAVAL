@@ -5,6 +5,17 @@ Barco::Barco()
 
 }
 
+char Barco::getNum() const
+{
+    return num;
+}
+
+void Barco::setNum(char newNum)
+{
+    num = newNum;
+}
+
+
 int Barco::getY() const
 {
     return Y;

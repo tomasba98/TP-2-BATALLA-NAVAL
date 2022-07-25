@@ -18,7 +18,7 @@ int main()
     Barco *crucero1 = new Crucero;
     crucero1->setX(1);
     crucero1->setY(2);
-    crucero1->setOrientacion('H');
+    crucero1->setOrientacion('V');
 
     //cout<<crucero1->getTamanio();
 
