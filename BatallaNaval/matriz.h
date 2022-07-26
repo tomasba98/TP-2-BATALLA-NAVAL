@@ -6,7 +6,7 @@ class Matriz
 {
 private:
     char **matriz;
-    int tamanioMatriz = 5;
+    int tamanioMatriz = 10;
 
 public:
     Matriz();
