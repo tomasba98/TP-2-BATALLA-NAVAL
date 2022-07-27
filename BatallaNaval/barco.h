@@ -1,7 +1,6 @@
 #ifndef BARCO_H
 #define BARCO_H
 
-
 class Barco
 {
 private:
@@ -28,6 +27,8 @@ public:
     void setNum(char newNum);
 
     virtual bool explotado();
+
+
 };
 
 #endif // BARCO_H

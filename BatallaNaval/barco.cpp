@@ -15,7 +15,6 @@ void Barco::setNum(char newNum)
     num = newNum;
 }
 
-
 int Barco::getY() const
 {
     return Y;
