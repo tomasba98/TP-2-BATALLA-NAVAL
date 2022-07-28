@@ -54,29 +54,57 @@ int Matriz::disparar(int x, int y)
 
     if((x>0 && x<this->tamanioMatriz) && (y>0 && y<this->tamanioMatriz)){
         char caract = this->matriz[y][x];
-
+        //int posVec = 0;
         switch(caract){
         case '-':
             this->matriz[y][x] = 'O';
             break;
         case '1':
             this->matriz[y][x] = 'X';
+            for (Barco b : this->cantBarcos){
+                    if(b.getNum()=='1'){
+                        b.hit();
+                        if(b.explotado()){
+                            //this->cantBarcos.erase(b); ELIMINAR CRUCERO DEL VECTOR
+                        }
+                    }
+            }
 
             break;
         case '3':
             this->matriz[y][x] = 'X';
+            for (Barco b : this->cantBarcos){
+                    if(b.getNum()=='3'){
+                        b.hit();
+                    }
+            }
 
             break;
         case '4':
             this->matriz[y][x] = 'X';
+            for (Barco b : this->cantBarcos){
+                    if(b.getNum()=='4'){
+                        b.hit();
+                    }
+            }
 
             break;
         case '5':
             this->matriz[y][x] = 'X';
+            for (Barco b : this->cantBarcos){
+                    if(b.getNum()=='5'){
+                        b.hit();
+                    }
+            }
 
             break;
         case '7':
             this->matriz[y][x] = 'X';
+            for (Barco b : this->cantBarcos){
+                    if(b.getNum()=='7'){
+                        b.hit();
+                    }
+            }
 
             break;
         }

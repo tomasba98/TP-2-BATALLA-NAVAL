@@ -44,23 +44,25 @@ int main()
     lancha1->setOrientacion('V');
 
     //CREAR LANCHA
-    Barco *lancha2 = new Lancha;
+    /*Barco *lancha2 = new Lancha;
     lancha1->setX(8);
     lancha1->setY(4);
-    lancha1->setOrientacion('V');
+    lancha1->setOrientacion('V');*/
 
     //AGREGAR BARCOS
     tablero.agregar_barco(crucero1);
     tablero.agregar_barco(portaaviones1);
     //tablero.agregar_barco(destructor1);
     tablero.agregar_barco(lancha1);
-    tablero.agregar_barco(lancha2);
+    //tablero.agregar_barco(lancha2);
 
 
     cout<<endl;
     tablero.mostrar_matriz();
 
-    tablero.disparar(9,9);
+    tablero.disparar(2,4);
+    tablero.disparar(2,5);
+    tablero.disparar(2,6);
 
     tablero.moverLancha();
 

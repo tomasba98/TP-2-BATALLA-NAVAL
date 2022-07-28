@@ -17,11 +17,16 @@ void Barco::setNum(char newNum)
 }
 
 void Barco::hit()
-{
+            //NO RESTA VIDA
+{           std::cout<<std::endl;
+            std::cout<<this->getVida();
     if(this->getVida()!=0){
         this->setVida(this->getVida()-1);
-    }else if(this->getVida()==0){
-        this->explotado();
+        std::cout<<std::endl;
+        std::cout<<this->getVida();
+        if(this->getVida()==0){
+                this->explotado();
+            }
     }
 }
 
@@ -84,8 +89,10 @@ bool Barco::explotado()
     if (vida==0){
         std::cout<<"Barco hundido!!";
         return true;
+    }else{
+        return false;
     }
-    //true - false
+
 }
 
 
