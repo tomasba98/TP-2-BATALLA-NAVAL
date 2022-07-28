@@ -1,4 +1,5 @@
 #include "barco.h"
+#include <iostream>
 
 Barco::Barco()
 {
@@ -13,6 +14,15 @@ char Barco::getNum() const
 void Barco::setNum(char newNum)
 {
     num = newNum;
+}
+
+void Barco::hit()
+{
+    if(this->getVida()!=0){
+        this->setVida(this->getVida()-1);
+    }else if(this->getVida()==0){
+        this->explotado();
+    }
 }
 
 int Barco::getY() const
@@ -71,7 +81,8 @@ void Barco::setOrientacion(char newOrientacion)
 
 bool Barco::explotado()
 {
-    if (vida=0){
+    if (vida==0){
+        std::cout<<"Barco hundido!!";
         return true;
     }
     //true - false

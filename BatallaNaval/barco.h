@@ -26,6 +26,7 @@ public:
     char getNum() const;
     void setNum(char newNum);
 
+    virtual void hit();
     virtual bool explotado();
 
 

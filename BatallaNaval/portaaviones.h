@@ -6,6 +6,8 @@ class Portaaviones : public Barco
 {
 public:
     Portaaviones();
+
+
 };
 
 #endif // PORTAAVIONES_H

@@ -23,8 +23,8 @@ void Matriz::setTamanioMatriz(int newTamanioMatriz)
 bool Matriz::lugarDisponible(int posX, int posY, int tamanio, char orientacion)
 {
      bool disponibilidad = true;
-     int restoY = posY-(tamanio/2);
-     int restoX = posX-(tamanio/2);
+     //int restoY = posY-(tamanio/2);
+     //int restoX = posX-(tamanio/2);
      int tamanioMatr = this->getTamanioMatriz();
 
 
@@ -33,14 +33,14 @@ bool Matriz::lugarDisponible(int posX, int posY, int tamanio, char orientacion)
      case 'H':
          //posicion X HORIZONAL
              for (int i=0;i<tamanio;i++){
-                 if((!((i+restoX>0) && (i+restoX<tamanioMatr))) || (matriz[posY][i+restoX] != '-'))
+                 if((!((posX+i>0) && (posX+i<tamanioMatr))) || (matriz[posY][posX+i] != '-'))
                      disponibilidad = false;
             }
          break;
      case 'V':
          //posicion X VERTICAL
              for (int i=0;i<tamanio;i++){
-                 if((matriz[i+restoY][posX] != '-') || (!((i+restoY>0) && (i+restoY<tamanioMatr))))
+                 if((matriz[posY+i][posX] != '-') || (!((posY+i>0) && (posY+i<tamanioMatr))))
                      disponibilidad = false;
               }
         break;
@@ -96,40 +96,49 @@ void Matriz::moverLancha()
 
     while(sePudo){
 
-            int posMovimiento = rand()%(4);
+            //int posMovimiento = rand()%(4);
+            int posMovimiento = 2;
 
             switch(posMovimiento){
              case 0:
                 //ARRIBA
-                if(this->lugarDisponible(b.getX(), b.getY()-1, b.getTamanio(), b.getOrientacion())){
+                if(this->lugarDisponible(b.getX(), b.getY()-1, b.getTamanio(), 'V')){
                     this->matriz[b.getY()][b.getX()]= '-';
                     b.setY(b.getY()-1);
+                    b.setOrientacion('V');
                     this->matriz[b.getY()][b.getX()]= '1';
                 }
+                sePudo = false;
                 break;
             case 1:
                 //ABAJO
-                if(this->lugarDisponible(b.getX(), b.getY()+1, b.getTamanio(), b.getOrientacion())){
+                if(this->lugarDisponible(b.getX(), b.getY()+1, b.getTamanio(), 'V')){
                     this->matriz[b.getY()][b.getX()]= '-';
                     b.setY(b.getY()+1);
+                    b.setOrientacion('V');
                     this->matriz[b.getY()][b.getX()]= '1';
                 }
+                sePudo = false;
                break;
             case 2:
                 //IZQUIERDA
-                if(this->lugarDisponible(b.getX()-1, b.getY(), b.getTamanio(), b.getOrientacion())){
+                if(this->lugarDisponible(b.getX()-1, b.getY(), b.getTamanio(), 'H')){
                     this->matriz[b.getY()][b.getX()]= '-';
                     b.setX(b.getX()-1);
+                    b.setOrientacion('H');
                     this->matriz[b.getY()][b.getX()]= '1';
                 }
+                sePudo = false;
                break;
             case 3:
-                //IZQUIERDA
-                if(this->lugarDisponible(b.getX()+1, b.getY(), b.getTamanio(), b.getOrientacion())){
+                //DERECHA
+                if(this->lugarDisponible(b.getX()+1, b.getY(), b.getTamanio(), 'H')){
                     this->matriz[b.getY()][b.getX()]= '-';
                     b.setX(b.getX()+1);
+                    b.setOrientacion('H');
                     this->matriz[b.getY()][b.getX()]= '1';
                 }
+                sePudo = false;
                break;
              }
            }
@@ -186,20 +195,20 @@ void Matriz::agregar_barco(Barco *barco)
         char orientacion = barco->getOrientacion();
         int x = barco->getX();
         int y = barco->getY();
-        int restoY = y-(tamanio/2);
-        int restoX = x-(tamanio/2);
+        //int restoY = y-(tamanio/2);
+        //int restoX = x-(tamanio/2);
 
         switch(orientacion){
         case 'H':
             //posicion X HORIZONAL
                 for (int i=0;i<tamanio;i++){
-                this->matriz[y][i+restoX] = barco->getNum();
+                this->matriz[y][i+x] = barco->getNum();
                }
             break;
         case 'V':
-            //posicion X VERTICAL
+            //posicion Y VERTICAL
                 for (int i=0;i<tamanio;i++){
-                this->matriz[i+restoY][x] = barco->getNum();
+                this->matriz[i+y][x] = barco->getNum();
         }
             break;
         }

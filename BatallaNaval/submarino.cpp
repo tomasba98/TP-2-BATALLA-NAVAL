@@ -6,7 +6,3 @@ Submarino::Submarino()
     Barco::setVida(3);
 }
 
-bool Submarino::explotado()
-{
-    //IF SUBMARINO MEDIO -> EXPLOTADO
-}

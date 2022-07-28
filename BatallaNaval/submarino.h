@@ -8,7 +8,6 @@ public:
     Submarino();
 
 
-    bool explotado();
 };
 
 #endif // SUBMARINO_H

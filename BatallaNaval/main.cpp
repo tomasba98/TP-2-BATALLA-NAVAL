@@ -20,8 +20,8 @@ int main()
 
     //CREAR CRUCERO
     Barco *crucero1 = new Crucero;
-    crucero1->setX(1);
-    crucero1->setY(2);
+    crucero1->setX(2);
+    crucero1->setY(4);
     crucero1->setOrientacion('V');
 
     //CREAR PORTAAVIONES
@@ -37,17 +37,24 @@ int main()
     destructor1->setOrientacion('H');
 
 
-    //CREAR DESTRUCTOR
+    //CREAR LANCHA
     Barco *lancha1 = new Lancha;
-    lancha1->setX(3);
-    lancha1->setY(7);
-    lancha1->setOrientacion('H');
+    lancha1->setX(5);
+    lancha1->setY(6);
+    lancha1->setOrientacion('V');
+
+    //CREAR LANCHA
+    Barco *lancha2 = new Lancha;
+    lancha1->setX(8);
+    lancha1->setY(4);
+    lancha1->setOrientacion('V');
 
     //AGREGAR BARCOS
     tablero.agregar_barco(crucero1);
     tablero.agregar_barco(portaaviones1);
     //tablero.agregar_barco(destructor1);
     tablero.agregar_barco(lancha1);
+    tablero.agregar_barco(lancha2);
 
 
     cout<<endl;
@@ -57,8 +64,10 @@ int main()
 
     tablero.moverLancha();
 
+
     cout<<endl;
     tablero.mostrar_matriz();
+
 
 
 

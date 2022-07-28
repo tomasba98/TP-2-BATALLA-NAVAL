@@ -7,6 +7,8 @@ class Destructor : public Barco
 {
 public:
     Destructor();
+
+
 };
 
 #endif // DESTRUCTOR_H

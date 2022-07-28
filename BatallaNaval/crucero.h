@@ -6,7 +6,7 @@
 class Crucero : public Barco
 {
 private:
-    char num = '1';
+
 public:
     Crucero();
 
