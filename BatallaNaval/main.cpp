@@ -64,12 +64,12 @@ int main()
     tablero.disparar(2,5);
     tablero.disparar(2,6);
 
+
     tablero.moverLancha();
 
 
     cout<<endl;
     tablero.mostrar_matriz();
-
 
 
 

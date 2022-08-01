@@ -9,6 +9,16 @@ Matriz::Matriz()
 
 }
 
+void Matriz::chequearVector()
+{
+    for (Barco b : this->cantBarcos){
+            if(b.getNum()=='3'){
+                std::cout<<std::endl;
+                std::cout<<b.getNombre()<<std::endl;
+            }
+    }
+}
+
 
 int Matriz::getTamanioMatriz() const
 {
@@ -61,7 +71,7 @@ int Matriz::disparar(int x, int y)
             break;
         case '1':
             this->matriz[y][x] = 'X';
-            for (Barco b : this->cantBarcos){
+            for (Barco &b : this->cantBarcos){
                     if(b.getNum()=='1'){
                         b.hit();
                         if(b.explotado()){
@@ -73,17 +83,16 @@ int Matriz::disparar(int x, int y)
             break;
         case '3':
             this->matriz[y][x] = 'X';
-            for (Barco b : this->cantBarcos){
+            for (Barco &b : this->cantBarcos){
                     if(b.getNum()=='3'){
                         b.hit();
-
                     }
             }
 
             break;
         case '4':
             this->matriz[y][x] = 'X';
-            for (Barco b : this->cantBarcos){
+            for (Barco &b : this->cantBarcos){
                     if(b.getNum()=='4'){
                         b.hit();
                     }
@@ -92,7 +101,7 @@ int Matriz::disparar(int x, int y)
             break;
         case '5':
             this->matriz[y][x] = 'X';
-            for (Barco b : this->cantBarcos){
+            for (Barco &b : this->cantBarcos){
                     if(b.getNum()=='5'){
                         b.hit();
                     }
@@ -101,7 +110,7 @@ int Matriz::disparar(int x, int y)
             break;
         case '7':
             this->matriz[y][x] = 'X';
-            for (Barco b : this->cantBarcos){
+            for (Barco &b : this->cantBarcos){
                     if(b.getNum()=='7'){
                         b.hit();
                     }
@@ -119,7 +128,7 @@ void Matriz::moverLancha()
 
     bool sePudo = true;
 
-    for (Barco b : this->cantBarcos){
+    for (Barco &b : this->cantBarcos){
 
         if(b.getTamanio()==1){
 

@@ -27,14 +27,11 @@ void Barco::setNum(char newNum)
 }
 
 void Barco::hit()
-                             //NO RESTA VIDA
+
 {   std::cout<<std::endl;
     std::cout<<this->nombre<<" was hit.\n Life: "<<this->getVida();
-    this->setNombre("pirulo");
     if(this->getVida()!=0){
-        this->setVida(this->getVida()-1);
-        std::cout<<std::endl;
-        std::cout<<this->getVida();
+        this->setVida(this->getVida()-1);        
         if(this->getVida()==0){
                 this->explotado();
             }
@@ -98,7 +95,8 @@ void Barco::setOrientacion(char newOrientacion)
 bool Barco::explotado()
 {
     if (vida==0){
-        std::cout<<"Barco hundido!!";
+        std::cout<<std::endl;
+        std::cout<<this->nombre<<" hundido!!!\n";
         return true;
     }else{
         return false;

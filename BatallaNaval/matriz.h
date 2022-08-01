@@ -13,6 +13,7 @@ private:
 public:
     Matriz();
 
+    void chequearVector();
     void crear_matriz();
     void mostrar_matriz();
     void agregar_barco(Barco *barco);
