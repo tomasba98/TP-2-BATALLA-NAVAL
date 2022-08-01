@@ -33,14 +33,14 @@ bool Matriz::lugarDisponible(int posX, int posY, int tamanio, char orientacion)
      case 'H':
          //posicion X HORIZONAL
              for (int i=0;i<tamanio;i++){
-                 if((!((posX+i>0) && (posX+i<tamanioMatr))) || (matriz[posY][posX+i] != '-'))
+                 if((!((posX+i>0) && (posX+i<tamanioMatr))) || (matriz[posY][posX+i] != '~'))
                      disponibilidad = false;
             }
          break;
      case 'V':
          //posicion X VERTICAL
              for (int i=0;i<tamanio;i++){
-                 if((matriz[posY+i][posX] != '-') || (!((posY+i>0) && (posY+i<tamanioMatr))))
+                 if((matriz[posY+i][posX] != '~') || (!((posY+i>0) && (posY+i<tamanioMatr))))
                      disponibilidad = false;
               }
         break;
@@ -56,7 +56,7 @@ int Matriz::disparar(int x, int y)
         char caract = this->matriz[y][x];
         //int posVec = 0;
         switch(caract){
-        case '-':
+        case '~':
             this->matriz[y][x] = 'O';
             break;
         case '1':
@@ -131,7 +131,7 @@ void Matriz::moverLancha()
              case 0:
                 //ARRIBA
                 if(this->lugarDisponible(b.getX(), b.getY()-1, b.getTamanio(), 'V')){
-                    this->matriz[b.getY()][b.getX()]= '-';
+                    this->matriz[b.getY()][b.getX()]= '~';
                     b.setY(b.getY()-1);
                     b.setOrientacion('V');
                     this->matriz[b.getY()][b.getX()]= '1';
@@ -141,7 +141,7 @@ void Matriz::moverLancha()
             case 1:
                 //ABAJO
                 if(this->lugarDisponible(b.getX(), b.getY()+1, b.getTamanio(), 'V')){
-                    this->matriz[b.getY()][b.getX()]= '-';
+                    this->matriz[b.getY()][b.getX()]= '~';
                     b.setY(b.getY()+1);
                     b.setOrientacion('V');
                     this->matriz[b.getY()][b.getX()]= '1';
@@ -151,7 +151,7 @@ void Matriz::moverLancha()
             case 2:
                 //IZQUIERDA
                 if(this->lugarDisponible(b.getX()-1, b.getY(), b.getTamanio(), 'H')){
-                    this->matriz[b.getY()][b.getX()]= '-';
+                    this->matriz[b.getY()][b.getX()]= '~';
                     b.setX(b.getX()-1);
                     b.setOrientacion('H');
                     this->matriz[b.getY()][b.getX()]= '1';
@@ -161,7 +161,7 @@ void Matriz::moverLancha()
             case 3:
                 //DERECHA
                 if(this->lugarDisponible(b.getX()+1, b.getY(), b.getTamanio(), 'H')){
-                    this->matriz[b.getY()][b.getX()]= '-';
+                    this->matriz[b.getY()][b.getX()]= '~';
                     b.setX(b.getX()+1);
                     b.setOrientacion('H');
                     this->matriz[b.getY()][b.getX()]= '1';
@@ -198,7 +198,7 @@ void Matriz::crear_matriz(){
     //RELLENAR " - "
     for(int i=1;i<this->tamanioMatriz;i++){
         for(int j=1;j<this->tamanioMatriz;j++){
-            this->matriz[i][j]= '-';
+            this->matriz[i][j]= '~';
         }
 
     }
