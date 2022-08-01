@@ -76,6 +76,7 @@ int Matriz::disparar(int x, int y)
             for (Barco b : this->cantBarcos){
                     if(b.getNum()=='3'){
                         b.hit();
+
                     }
             }
 

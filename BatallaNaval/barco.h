@@ -1,9 +1,11 @@
 #ifndef BARCO_H
 #define BARCO_H
+#include <iostream>
 
 class Barco
 {
 private:
+    std::string nombre;
     char num;
     int tamanio;
     char orientacion;
@@ -30,6 +32,8 @@ public:
     virtual bool explotado();
 
 
+    const std::string &getNombre() const;
+    void setNombre(const std::string &newNombre);
 };
 
 #endif // BARCO_H
