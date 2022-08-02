@@ -84,8 +84,12 @@ int Matriz::disparar(int x, int y)
         case '3':
             this->matriz[y][x] = 'X';
             for (Barco &b : this->cantBarcos){
+                iter = this->cantBarcos.begin();
                     if(b.getNum()=='3'){
                         b.hit();
+                        if(b.explotado()){
+//                            this->cantBarcos[pos] ;
+                        }
                     }
             }
 
@@ -124,7 +128,7 @@ int Matriz::disparar(int x, int y)
 
 void Matriz::moverLancha()
 {
-    srand(time(NULL));
+
 
     bool sePudo = true;
 
@@ -134,8 +138,8 @@ void Matriz::moverLancha()
 
     while(sePudo){
 
-            //int posMovimiento = rand()%(4);
-            int posMovimiento = 2;
+            int posMovimiento = rand()%(4);
+//            int posMovimiento = 2;
 
             switch(posMovimiento){
              case 0:
@@ -252,8 +256,8 @@ void Matriz::agregar_barco(Barco *barco)
         }
 
 
-        this->cantBarcos.push_back(*(barco));
-
+        //this->cantBarcos.push_back(*(barco));
+            this->cantBarcos.agregarElemento(*barco);
 
         //en el caso de que haya algun barco en es pos:
     }else{
