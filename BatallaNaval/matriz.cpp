@@ -30,7 +30,7 @@ void Matriz::setTamanioMatriz(int newTamanioMatriz)
 
 bool Matriz::lugarDisponible(int posX, int posY, int tamanio, char orientacion)
 {
-     bool disponibilidad = true;
+     //bool disponibilidad = false;
      //int restoY = posY-(tamanio/2);
      //int restoX = posX-(tamanio/2);
      int tamanioMatr = this->getTamanioMatriz();
@@ -39,22 +39,51 @@ bool Matriz::lugarDisponible(int posX, int posY, int tamanio, char orientacion)
                             //NO CHEQUEA SI HAY BARCO
      switch(orientacion){
      case 'H':
-         //posicion X HORIZONAL
-             for (int i=0;i<tamanio;i++){
-                 if((!((posX+i>0) && (posX+i<tamanioMatr))) || (matriz[posY][posX+i] != '~'))
-                     disponibilidad = false;
-            }
+         //posicion X
+
+//             for (int i=0;i<tamanio;i++){
+//                 if((!((posX+i>0) && (posX+i<tamanioMatr))) || (matriz[posY][posX+i] != '~'))
+//                     disponibilidad = false;
+//            }
+
+             if(((posX>0) && (posX+tamanio<=tamanioMatr)) && ((posY>0) && (posY+tamanio<=tamanioMatr))){
+                 for (int i=0;i<tamanio;i++){
+                     if((matriz[posY][posX+i] != '~')){
+                         return false;
+                         //return false;
+                     }
+                 }
+             }else{
+                 return false;
+             }
+
+
+            return true;
          break;
      case 'V':
          //posicion X VERTICAL
-             for (int i=0;i<tamanio;i++){
-                 if((!((posY+i>0) && (posY+i<tamanioMatr))) || (matriz[posY+i][posX] != '~'))
-                     disponibilidad = false;
-              }
+
+//             for (int i=0;i<tamanio;i++){
+//                 if((!((posY+i>0) && (posY+i<tamanioMatr))) || (matriz[posY+i][posX] != '~'))
+//                     disponibilidad = false;
+//              }
+
+             if(((posY>0) && (posY+tamanio<=tamanioMatr)) && ((posX>0) && (posX+tamanio<=tamanioMatr))){
+                 for (int i=0;i<tamanio;i++){
+                     if((matriz[posY+i][posX] != '~')){
+                         return false;
+                         //return false;
+                     }
+                 }
+             }else{
+                 return false;
+             }
+
+              return true;
         break;
      }
 
-     return disponibilidad;
+     //return false;
 }
 
 int Matriz::disparar(int x, int y)

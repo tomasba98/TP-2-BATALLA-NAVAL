@@ -133,33 +133,43 @@ int main()
 
     return 0;
 }
-void agregarAleatorios(Matriz &tb, Barco *barco){
-   int i = 0;
-   int cantBarcos = 5;
+void agregarAleatorios(Matriz &tb, Barco *barco){   
    char orientacionChar;
+   int x;
+   int y;
+   int orientacion;
 
-   int x = rand()%10+1;
-   int y = rand()%10+1;
-   int orientacion = rand()%1;
+//   if(orientacion == 0){
+//       orientacionChar = 'V';
+//   }else{
+//       orientacionChar = 'H';
+//   }
 
-   if(orientacion == 0){
-       orientacionChar = 'V';
-   }else{
-       orientacionChar = 'H';
-   }
-
-   while(!tb.lugarDisponible(x,y,barco->getTamanio(),orientacion)){
-       cout<<"prueba"<<endl;
-       x = rand()%10+1;
-       y = rand()%10+1;
-       orientacion = rand()%1;
+   do{
+       x = rand()%9+1;
+       y = rand()%9+1;
+       orientacion = rand()%2;
 
        if(orientacion == 0){
            orientacionChar = 'V';
-       }else {
+       }else{
            orientacionChar = 'H';
        }
-   }
+
+   }while(!tb.lugarDisponible(x,y,barco->getTamanio(),orientacion));
+
+//   while(!tb.lugarDisponible(x,y,barco->getTamanio(),orientacion)){
+//       cout<<"prueba"<<endl;
+//       x = rand()%9+1;
+//       y = rand()%9+1;
+//       orientacion = rand()%2;
+
+//       if(orientacion == 0){
+//           orientacionChar = 'V';
+//       }else {
+//           orientacionChar = 'H';
+//       }
+//   }
 
    barco->setX(x);
    barco->setY(y);
@@ -173,7 +183,6 @@ void agregarManual(Matriz &tb, Barco *barco){
     cout<<"posicion x: ";cin>>x;
     cout<<"posicion y: ";cin>>y;
     cout<<"orientacion H/V: ";cin>>orientacion;
-
 
     while(!tb.lugarDisponible(x,y,barco->getTamanio(),orientacion)){
         cout<<"\n\nNO SE PUEDE ESA POSICION"<<endl;
