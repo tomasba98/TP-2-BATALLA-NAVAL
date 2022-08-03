@@ -12,10 +12,8 @@ Matriz::Matriz()
 void Matriz::chequearVector()
 {
     for (Barco b : this->cantBarcos){
-            if(b.getNum()=='3'){
-                std::cout<<std::endl;
-                std::cout<<b.getNombre()<<std::endl;
-            }
+            std::cout<<"\nBarcos en flota: \n";
+            std::cout<<b.getNombre()<<std::endl;
     }
 }
 
@@ -32,41 +30,36 @@ void Matriz::setTamanioMatriz(int newTamanioMatriz)
 
 bool Matriz::lugarDisponible(int posX, int posY, int tamanio, char orientacion)
 {
-     bool disponibilidad = false;
-
-     int espacioBarco;
-
+     bool disponibilidad = true;
+     //int restoY = posY-(tamanio/2);
+     //int restoX = posX-(tamanio/2);
      int tamanioMatr = this->getTamanioMatriz();
 
+
+                            //NO CHEQUEA SI HAY BARCO
      switch(orientacion){
      case 'H':
          //posicion X HORIZONAL
-                espacioBarco = posX + tamanio;
-                 if((posX > 0 && posX <10) && (posX + tamanio < tamanioMatr)){
-                     for (int i=0;i<tamanio;i++){
-                        if(matriz[posY][posX + i] == '~'){
-                             disponibilidad = true;
-                 }
-            }}
+             for (int i=0;i<tamanio;i++){
+                 if((!((posX+i>0) && (posX+i<tamanioMatr))) || (matriz[posY][posX+i] != '~'))
+                     disponibilidad = false;
+            }
          break;
-
      case 'V':
          //posicion X VERTICAL
-                espacioBarco = posY + tamanio;
-                if(((espacioBarco) < (tamanioMatr)) && (posY > 0)){
-                     for (int i=0;i<tamanio;i++){
-                        if(matriz[posY + i][posX] == '~'){
-                            disponibilidad = true;
-                           }
-                     }}
+             for (int i=0;i<tamanio;i++){
+                 if((!((posY+i>0) && (posY+i<tamanioMatr))) || (matriz[posY+i][posX] != '~'))
+                     disponibilidad = false;
+              }
         break;
-       }
+     }
 
      return disponibilidad;
 }
 
 int Matriz::disparar(int x, int y)
 {
+
     if((x>0 && x<this->tamanioMatriz) && (y>0 && y<this->tamanioMatriz)){
         char caract = this->matriz[y][x];
         //int posVec = 0;
@@ -80,7 +73,7 @@ int Matriz::disparar(int x, int y)
                     if(b.getNum()=='1'){
                         b.hit();
                         if(b.explotado()){
-                            //this->cantBarcos.erase(b); ELIMINAR CRUCERO DEL VECTOR
+                            this->eliminarBarco(b);
                         }
                     }
             }
@@ -88,11 +81,11 @@ int Matriz::disparar(int x, int y)
             break;
         case '3':
             this->matriz[y][x] = 'X';
-            for (Barco &b : this->cantBarcos){
+            for (Barco &b : this->cantBarcos){               
                     if(b.getNum()=='3'){
                         b.hit();
                         if(b.explotado()){
-//                            this->cantBarcos[pos] ;
+                           this->eliminarBarco(b);
                         }
                     }
             }
@@ -103,6 +96,9 @@ int Matriz::disparar(int x, int y)
             for (Barco &b : this->cantBarcos){
                     if(b.getNum()=='4'){
                         b.hit();
+                        if(b.explotado()){
+                           this->eliminarBarco(b);
+                        }
                     }
             }
 
@@ -112,6 +108,9 @@ int Matriz::disparar(int x, int y)
             for (Barco &b : this->cantBarcos){
                     if(b.getNum()=='5'){
                         b.hit();
+                        if(b.explotado()){
+                           this->eliminarBarco(b);
+                        }
                     }
             }
 
@@ -121,6 +120,9 @@ int Matriz::disparar(int x, int y)
             for (Barco &b : this->cantBarcos){
                     if(b.getNum()=='7'){
                         b.hit();
+                        if(b.explotado()){
+                           this->eliminarBarco(b);
+                        }
                     }
             }
 
@@ -192,6 +194,19 @@ void Matriz::moverLancha()
     }
 }
 
+void Matriz::eliminarBarco(Barco b)
+{   std::vector <Barco> aux;
+
+    for (Barco a : this->cantBarcos){
+            if(a.getNum()!=b.getNum()){
+                aux.push_back(a);
+            }
+    }
+      this->cantBarcos = aux;
+
+    this->chequearVector();
+}
+
 
 
 
@@ -235,26 +250,40 @@ void Matriz::mostrar_matriz()
 
 void Matriz::agregar_barco(Barco *barco)
 {
-    if(this->lugarDisponible(barco->getX(), barco->getY(), barco->getTamanio(), barco->getOrientacion()))
-    {
-        switch(barco->getOrientacion()){
-            case 'H':
-                //posicion X HORIZONAL
-                    for (int i=0;i<barco->getTamanio();i++){
-                    this->matriz[barco->getY()][i+barco->getX()] = barco->getNum();
-                   }
-                break;
-            case 'V':
-                //posicion Y VERTICAL
-                    for (int i=0;i<barco->getTamanio();i++){
-                    this->matriz[i+barco->getY()][barco->getX()] = barco->getNum();
-            }
-                break;
-            }
+    //SI NO HAY BARCOS EN ESA POSICION
+    if(lugarDisponible(barco->getX(), barco->getY(), barco->getTamanio(), barco->getOrientacion())){
+        int tamanio = barco->getTamanio();
+        char orientacion = barco->getOrientacion();
+        int x = barco->getX();
+        int y = barco->getY();
+        //int restoY = y-(tamanio/2);
+        //int restoX = x-(tamanio/2);
+
+        switch(orientacion){
+        case 'H':
+            //posicion X HORIZONAL
+                for (int i=0;i<tamanio;i++){
+                this->matriz[y][i+x] = barco->getNum();
+               }
+            break;
+        case 'V':
+            //posicion Y VERTICAL
+                for (int i=0;i<tamanio;i++){
+                this->matriz[i+y][x] = barco->getNum();
+        }
+            break;
+        }
+
+
         this->cantBarcos.push_back(*(barco));
+
+
+
+        //en el caso de que haya algun barco en es pos:
     }else{
-        std::cout<<"error";
+        std::cout<<"\nEl barco no se pudo agregar porque hay otro barco en la misma pos"<<std::endl;
     }
+
 }
 
 

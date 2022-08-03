@@ -2,15 +2,14 @@
 #define MATRIZ_H
 #include "barco.h"
 #include <vector>
-#include "VectorDinamico.h"
 
 class Matriz
 {
 private:
     char **matriz;
     int tamanioMatriz = 10;
+    int numBarcos = 5;
     std::vector <Barco> cantBarcos;
-//    std::list <Barco> totalBarcos;
 
 public:
     Matriz();
@@ -24,6 +23,7 @@ public:
     bool lugarDisponible(int, int, int, char);
     int disparar(int, int);
     void moverLancha();
+    void eliminarBarco(Barco b);
 };
 
 #endif // MATRIZ_H

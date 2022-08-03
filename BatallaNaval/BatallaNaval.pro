@@ -16,7 +16,6 @@ SOURCES += \
         submarino.cpp
 
 HEADERS += \
-    VectorDinamico.h \
     barco.h \
     crucero.h \
     destructor.h \
