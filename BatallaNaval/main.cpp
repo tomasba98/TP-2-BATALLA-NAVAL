@@ -6,12 +6,14 @@
 #include "destructor.h"
 #include "lancha.h"
 #include "submarino.h"
-#include <cstdlib>
+#include <stdlib.h>
+#include<time.h>
 
 using namespace std;
 
 void agregarAleatorios(Matriz &tb, Barco *barco);
 void agregarManual(Matriz &tb, Barco *barco);
+void dispararBot(Matriz &tb);
 
 int main()
 {
@@ -44,6 +46,7 @@ int main()
         tablero2.crear_matriz();
         tablero2.mostrar_matriz();
 
+
         cout<<"Desea agregar aleatoriamente los barcos? (S/N): ";
         cin>>respuestaAleatorio;
 
@@ -64,6 +67,22 @@ int main()
             agregarManual(tablero1,lancha1);
             tablero1.mostrar_matriz();
             agregarManual(tablero1,submarino1);
+        }
+
+        cout<<endl;
+        tablero1.mostrar_matriz();
+
+        while(tablero1.getNumBarcos()!=0){
+            int x,y;
+            cout<<"\nDISPARE"<<endl;
+            cout<<"x: ";
+            cin>>x;
+            cout<<"y: ";
+            cin>>y;
+
+            tablero1.disparar(x,y);
+            cout<<endl;
+            tablero1.mostrar_matriz();
         }
 
         cout<<endl;
@@ -133,48 +152,31 @@ int main()
 
     return 0;
 }
-void agregarAleatorios(Matriz &tb, Barco *barco){   
+void agregarAleatorios(Matriz &tb, Barco *barco){
+
    char orientacionChar;
    int x;
    int y;
    int orientacion;
-
-//   if(orientacion == 0){
-//       orientacionChar = 'V';
-//   }else{
-//       orientacionChar = 'H';
-//   }
 
    do{
        x = rand()%9+1;
        y = rand()%9+1;
        orientacion = rand()%2;
 
-       if(orientacion == 0){
+       if(orientacion == 1){
            orientacionChar = 'V';
        }else{
            orientacionChar = 'H';
        }
 
-   }while(!tb.lugarDisponible(x,y,barco->getTamanio(),orientacion));
-
-//   while(!tb.lugarDisponible(x,y,barco->getTamanio(),orientacion)){
-//       cout<<"prueba"<<endl;
-//       x = rand()%9+1;
-//       y = rand()%9+1;
-//       orientacion = rand()%2;
-
-//       if(orientacion == 0){
-//           orientacionChar = 'V';
-//       }else {
-//           orientacionChar = 'H';
-//       }
-//   }
+   }while(!tb.lugarDisponible(x,y,barco->getTamanio(),orientacionChar));
 
    barco->setX(x);
    barco->setY(y);
    barco->setOrientacion(orientacionChar);
    tb.agregar_barco(barco);
+
 }
 void agregarManual(Matriz &tb, Barco *barco){
     int x,y;
@@ -195,4 +197,10 @@ void agregarManual(Matriz &tb, Barco *barco){
     barco->setY(y);
     barco->setOrientacion(orientacion);
     tb.agregar_barco(barco);
+}
+void dispararBot(Matriz &tb){
+    int x = rand()%9+1;
+    int y = rand()%9+1;
+
+    tb.disparar(x,y);
 }

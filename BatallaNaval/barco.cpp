@@ -1,6 +1,11 @@
 #include "barco.h"
 #include <iostream>
 
+Barco::Barco()
+{
+
+}
+
 const std::string &Barco::getNombre() const
 {
     return nombre;
@@ -9,11 +14,6 @@ const std::string &Barco::getNombre() const
 void Barco::setNombre(const std::string &newNombre)
 {
     nombre = newNombre;
-}
-
-Barco::Barco()
-{
-
 }
 
 char Barco::getNum() const
@@ -29,7 +29,7 @@ void Barco::setNum(char newNum)
 void Barco::hit()
 
 {   std::cout<<std::endl;
-    std::cout<<this->nombre<<" was hit.\n Life: "<<this->getVida();
+    std::cout<<this->nombre<<" was hit.\n Life: "<<this->getVida()<<std::endl;;
     if(this->getVida()!=0){
         this->setVida(this->getVida()-1);        
         if(this->getVida()==0){

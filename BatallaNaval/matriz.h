@@ -8,7 +8,7 @@ class Matriz
 private:
     char **matriz;
     int tamanioMatriz = 10;
-    int numBarcos = 5;
+    int numBarcos;
     std::vector <Barco> cantBarcos;
 
 public:
@@ -24,6 +24,8 @@ public:
     int disparar(int, int);
     void moverLancha();
     void eliminarBarco(Barco b);
+    int getNumBarcos() const;
+    void setNumBarcos(int newNumBarcos);
 };
 
 #endif // MATRIZ_H
