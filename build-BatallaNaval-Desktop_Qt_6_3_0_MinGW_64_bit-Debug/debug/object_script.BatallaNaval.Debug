@@ -1,0 +1,10 @@
+debug/barco.o
+debug/crucero.o
+debug/destructor.o
+debug/lancha.o
+debug/main.o
+debug/mapa.o
+debug/matriz.o
+debug/menu.o
+debug/portaaviones.o
+debug/submarino.o

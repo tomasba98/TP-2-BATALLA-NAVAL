@@ -1,0 +1,10 @@
+release/barco.o
+release/crucero.o
+release/destructor.o
+release/lancha.o
+release/main.o
+release/mapa.o
+release/matriz.o
+release/menu.o
+release/portaaviones.o
+release/submarino.o
