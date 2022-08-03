@@ -1,11 +1,15 @@
 #include <iostream>
-#include "crucero.h"
+#include <cstdlib>
+
 #include "matriz.h"
+
+#include "crucero.h"
 #include "barco.h"
+#include "submarino.h"
 #include "portaaviones.h"
 #include "destructor.h"
 #include "lancha.h"
-#include <cstdlib>
+
 
 using namespace std;
 
@@ -49,9 +53,15 @@ int main()
 
     //CREAR BARCOS
     Barco *crucero1 = new Crucero;
-    crucero1->setX(2);
-    crucero1->setY(4);
     crucero1->setOrientacion('V');
+    crucero1->setX(1);
+    crucero1->setY(2);
+
+//    Barco *destructor1 = new Destructor;
+
+//    Barco *portaAviones1 = new Portaaviones;
+
+//    Barco *submarino1 = new Submarino;
 
     char respuestaAleatorio;
 
@@ -72,7 +82,13 @@ int main()
 
         if(respuestaAleatorio == 'S' || respuestaAleatorio == 's'){
             agregarAleatorios(tablero1, crucero1);
+//            agregarAleatorios(tablero1, destructor1);
+//            agregarAleatorios(tablero1, portaAviones1);
+//            agregarAleatorios(tablero1, submarino1);
+
              tablero1.mostrar_matriz();
+        }else{
+            cout<<"intente de nuevo";
         }
 
 

@@ -1,7 +1,7 @@
 #ifndef MATRIZ_H
 #define MATRIZ_H
 #include "barco.h"
-//#include <vector>
+#include <vector>
 #include "VectorDinamico.h"
 
 class Matriz
@@ -9,7 +9,7 @@ class Matriz
 private:
     char **matriz;
     int tamanioMatriz = 10;
-    VectorDinamico <Barco> cantBarcos;
+    std::vector <Barco> cantBarcos;
 //    std::list <Barco> totalBarcos;
 
 public:

@@ -32,36 +32,41 @@ void Matriz::setTamanioMatriz(int newTamanioMatriz)
 
 bool Matriz::lugarDisponible(int posX, int posY, int tamanio, char orientacion)
 {
-     bool disponibilidad = true;
-     //int restoY = posY-(tamanio/2);
-     //int restoX = posX-(tamanio/2);
+     bool disponibilidad = false;
+
+     int espacioBarco;
+
      int tamanioMatr = this->getTamanioMatriz();
-
-
 
      switch(orientacion){
      case 'H':
          //posicion X HORIZONAL
-             for (int i=0;i<tamanio;i++){
-                 if((!((posX+i>0) && (posX+i<tamanioMatr))) || (matriz[posY][posX+i] != '~'))
-                     disponibilidad = false;
-            }
+                espacioBarco = posX + tamanio;
+                 if((posX > 0 && posX <10) && (posX + tamanio < tamanioMatr)){
+                     for (int i=0;i<tamanio;i++){
+                        if(matriz[posY][posX + i] == '~'){
+                             disponibilidad = true;
+                 }
+            }}
          break;
+
      case 'V':
          //posicion X VERTICAL
-             for (int i=0;i<tamanio;i++){
-                 if((matriz[posY+i][posX] != '~') || (!((posY+i>0) && (posY+i<tamanioMatr))))
-                     disponibilidad = false;
-              }
+                espacioBarco = posY + tamanio;
+                if(((espacioBarco) < (tamanioMatr)) && (posY > 0)){
+                     for (int i=0;i<tamanio;i++){
+                        if(matriz[posY + i][posX] == '~'){
+                            disponibilidad = true;
+                           }
+                     }}
         break;
-     }
+       }
 
      return disponibilidad;
 }
 
 int Matriz::disparar(int x, int y)
 {
-
     if((x>0 && x<this->tamanioMatriz) && (y>0 && y<this->tamanioMatriz)){
         char caract = this->matriz[y][x];
         //int posVec = 0;
@@ -84,7 +89,6 @@ int Matriz::disparar(int x, int y)
         case '3':
             this->matriz[y][x] = 'X';
             for (Barco &b : this->cantBarcos){
-                iter = this->cantBarcos.begin();
                     if(b.getNum()=='3'){
                         b.hit();
                         if(b.explotado()){
@@ -231,39 +235,26 @@ void Matriz::mostrar_matriz()
 
 void Matriz::agregar_barco(Barco *barco)
 {
-    //si no hay barcos en esa pos:-
-    if(lugarDisponible(barco->getX(), barco->getY(), barco->getTamanio(), barco->getOrientacion())){
-        int tamanio = barco->getTamanio();
-        char orientacion = barco->getOrientacion();
-        int x = barco->getX();
-        int y = barco->getY();
-        //int restoY = y-(tamanio/2);
-        //int restoX = x-(tamanio/2);
-
-        switch(orientacion){
-        case 'H':
-            //posicion X HORIZONAL
-                for (int i=0;i<tamanio;i++){
-                this->matriz[y][i+x] = barco->getNum();
-               }
-            break;
-        case 'V':
-            //posicion Y VERTICAL
-                for (int i=0;i<tamanio;i++){
-                this->matriz[i+y][x] = barco->getNum();
-        }
-            break;
-        }
-
-
-        //this->cantBarcos.push_back(*(barco));
-            this->cantBarcos.agregarElemento(*barco);
-
-        //en el caso de que haya algun barco en es pos:
+    if(this->lugarDisponible(barco->getX(), barco->getY(), barco->getTamanio(), barco->getOrientacion()))
+    {
+        switch(barco->getOrientacion()){
+            case 'H':
+                //posicion X HORIZONAL
+                    for (int i=0;i<barco->getTamanio();i++){
+                    this->matriz[barco->getY()][i+barco->getX()] = barco->getNum();
+                   }
+                break;
+            case 'V':
+                //posicion Y VERTICAL
+                    for (int i=0;i<barco->getTamanio();i++){
+                    this->matriz[i+barco->getY()][barco->getX()] = barco->getNum();
+            }
+                break;
+            }
+        this->cantBarcos.push_back(*(barco));
     }else{
-        std::cout<<"\nEl barco no se pudo agregar porque hay otro barco en la misma pos"<<std::endl;
+        std::cout<<"error";
     }
-
 }
 
 
