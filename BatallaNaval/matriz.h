@@ -2,6 +2,7 @@
 #define MATRIZ_H
 #include "barco.h"
 #include <vector>
+#include <iostream>
 
 class Matriz
 {
@@ -10,6 +11,7 @@ private:
     int tamanioMatriz = 10;
     int numBarcos;
     std::vector <Barco> cantBarcos;
+    bool hit;
 
 public:
     Matriz();
@@ -26,6 +28,18 @@ public:
     void eliminarBarco(Barco b);
     int getNumBarcos() const;
     void setNumBarcos(int newNumBarcos);
+    bool matrizHit();
+    void modificarMatriz(int,int,char);
+
+     /*friend char  operator[] (int num){
+          assert(num>=0 && num<size);   //prueba si num est  en el rango
+          return (ptr[num]);
+    }
+
+     friend std::ostream&  operator[] (std::ostream& os,Matriz& obj){
+              this->obj[//prueba si num est  en el rango
+           return (ptr[num]);
+     }*/
 };
 
 #endif // MATRIZ_H

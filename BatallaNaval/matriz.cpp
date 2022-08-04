@@ -21,6 +21,16 @@ void Matriz::setNumBarcos(int newNumBarcos)
     numBarcos = newNumBarcos;
 }
 
+bool Matriz::matrizHit()
+{
+    return this->hit;
+}
+
+void Matriz::modificarMatriz(int x, int y, char c)
+{
+    this->matriz[y][x]= c;
+}
+
 void Matriz::chequearVector()
 {
     std::cout<<"\nBarcos en flota: \n";
@@ -90,10 +100,12 @@ int Matriz::disparar(int x, int y)
         switch(caract){
         case '~':
             this->matriz[y][x] = 'O';
+            this->hit = false;
             std::cout<<"\nSHOT AGUA!\n";
             break;
         case '1':
             this->matriz[y][x] = 'X';
+            this->hit = true;
             for (Barco &b : this->cantBarcos){
                 if(b.getNum()=='1'){
                     b.hit();
@@ -106,6 +118,7 @@ int Matriz::disparar(int x, int y)
             break;
         case '3':
             this->matriz[y][x] = 'X';
+            this->hit = true;
             for (Barco &b : this->cantBarcos){
                 if(b.getNum()=='3'){
                     b.hit();
@@ -118,6 +131,7 @@ int Matriz::disparar(int x, int y)
             break;
         case '4':
             this->matriz[y][x] = 'X';
+            this->hit = true;
             for (Barco &b : this->cantBarcos){
                 if(b.getNum()=='4'){
                     b.hit();
@@ -130,6 +144,7 @@ int Matriz::disparar(int x, int y)
             break;
         case '5':
             this->matriz[y][x] = 'X';
+            this->hit = true;
             for (Barco &b : this->cantBarcos){
                 if(b.getNum()=='5'){
                     b.hit();
