@@ -29,7 +29,7 @@ void Barco::setNum(char newNum)
 void Barco::hit()
 
 {   std::cout<<std::endl;
-    std::cout<<this->nombre<<" was hit.\n Life: "<<this->getVida()<<std::endl;;
+    std::cout<<this->nombre<<" was hit -> Life: "<<this->getVida()<<std::endl;;
     if(this->getVida()!=0){
         this->setVida(this->getVida()-1);        
         if(this->getVida()==0){

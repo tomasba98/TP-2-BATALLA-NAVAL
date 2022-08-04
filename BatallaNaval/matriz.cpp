@@ -23,8 +23,8 @@ void Matriz::setNumBarcos(int newNumBarcos)
 
 void Matriz::chequearVector()
 {
+    std::cout<<"\nBarcos en flota: \n";
     for (Barco b : this->cantBarcos){
-        std::cout<<"\nBarcos en flota: \n";
         std::cout<<b.getNombre()<<std::endl;
     }
 }
@@ -73,7 +73,6 @@ bool Matriz::lugarDisponible(int posX, int posY, int tamanio, char orientacion)
             }else{
                 return disponibilidad;
             }
-
             return true;
             break;
         }
@@ -91,6 +90,7 @@ int Matriz::disparar(int x, int y)
         switch(caract){
         case '~':
             this->matriz[y][x] = 'O';
+            std::cout<<"\nSHOT AGUA!\n";
             break;
         case '1':
             this->matriz[y][x] = 'X';
@@ -141,14 +141,7 @@ int Matriz::disparar(int x, int y)
 
             break;
         case '7':
-
-
-
-
-
-            ;
             for (Barco &b : this->cantBarcos){
-
                 if(b.getNum()=='7'){
                     char orientacion = b.getOrientacion();
 
@@ -160,6 +153,7 @@ int Matriz::disparar(int x, int y)
                             this->matriz[y][x]='X';
                             this->matriz[y][x-1]='X';
                             this->matriz[y][x+1]='X';
+                            b.explotado();
                             this->eliminarBarco(b);
                         }else{
                             b.hit();
@@ -177,6 +171,7 @@ int Matriz::disparar(int x, int y)
                             this->matriz[y][x]='X';
                             this->matriz[y-1][x]='X';
                             this->matriz[y+1][x]='X';
+                            b.explotado();
                             this->eliminarBarco(b);
                         }else{
                             b.hit();
@@ -188,9 +183,6 @@ int Matriz::disparar(int x, int y)
 
                         break;
                     }
-
-
-
 
                 }
 
@@ -272,7 +264,6 @@ void Matriz::eliminarBarco(Barco b)
     }
     this->cantBarcos = aux;
     this->numBarcos--;
-    std::cout<<"\n"<<this->numBarcos;
     this->chequearVector();
 }
 
@@ -341,12 +332,8 @@ void Matriz::agregar_barco(Barco *barco)
         break;
     }
 
-
     this->cantBarcos.push_back(*(barco));
-
     this->numBarcos++;
-    std::cout<<"\n"<<this->numBarcos;
-
 }
 
 
