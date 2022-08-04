@@ -29,6 +29,7 @@ public:
     void dispararBot(Matriz &tb);
     void jugar();
     void crearBarcos(int );
+    void copiarTableroParaDisparar(Matriz &,int , int );
 };
 
 #endif // MENU_H

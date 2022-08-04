@@ -30,6 +30,9 @@ public:
     void setNumBarcos(int newNumBarcos);
     bool matrizHit();
     void modificarMatriz(int,int,char);
+    void mostrarFlota();
+    void setChar(char,int x,int y);
+    char getChar(int x, int y);
 
      /*friend char  operator[] (int num){
           assert(num>=0 && num<size);   //prueba si num est  en el rango

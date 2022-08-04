@@ -30,6 +30,23 @@ void Matriz::modificarMatriz(int x, int y, char c)
 {
     this->matriz[y][x]= c;
 }
+void Matriz::mostrarFlota()
+{
+    std::cout<<"\n   Barcos en flota: \n";
+    for (Barco b : this->cantBarcos){
+        std::cout<<std::setw(12)<<b.getNombre()<<"  -> "<<std::setw(7)<<"Life: "<<b.getVida()<<"/"<<b.getTamanio()<<std::endl;
+    }
+}
+
+void Matriz::setChar(char c, int x, int y)
+{
+    this->matriz[y][x]= c;
+}
+
+char Matriz::getChar(int x, int y)
+{
+    return this->matriz[y][x];
+}
 
 void Matriz::chequearVector()
 {
@@ -101,7 +118,7 @@ int Matriz::disparar(int x, int y)
         case '~':
             this->matriz[y][x] = 'O';
             this->hit = false;
-            std::cout<<"\nSHOT AGUA!\n";
+            std::cout<<"\nShot Agua!\n";
             break;
         case '1':
             this->matriz[y][x] = 'X';
