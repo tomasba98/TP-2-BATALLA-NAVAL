@@ -19,7 +19,7 @@ private:
     Matriz tablero2;    //ia
     Matriz tableroParaDisparar;    //user
     //Matriz tablero2ParaDisparar;    //ia
-    std::vector <Barco> Barcos;
+    std::vector <Barco*> Barcos;
 
 
 public:
@@ -30,6 +30,7 @@ public:
     void jugar();
     void crearBarcos(int );
     void copiarTableroParaDisparar(Matriz &,int , int );
+    void cleanWindows();
 };
 
 #endif // MENU_H
