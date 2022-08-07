@@ -13,10 +13,13 @@ void Menu::SeleccionarParametrosInicio(Matriz &tablero1, Matriz &tablero2, Matri
 {
     int cant;
     int tamañoMatriz;
-
-    cout<<"Elija tamano del tablero: ";
+    cout<<"-OJO! EL TAMANIO DE LA MATRIZ DEBE SER EL DOBLE DE CANTIDAD DE BARCOS"<<endl;
+    cout<<"-MAXIMO CANTIDAD DE BARCOS -> 5"<<endl;
+    cout<<"\nElija cantidad de Barcos: ";
+    cin>>cant;
+    cout<<"Elija tamanio del tablero: ";
     cin>>tamañoMatriz;
-
+    tamañoMatriz+=3;
     tablero1.setTamanioMatriz(tamañoMatriz);
     tablero2.setTamanioMatriz(tamañoMatriz);
     tableroParaDisparar.setTamanioMatriz(tamañoMatriz);
@@ -25,8 +28,7 @@ void Menu::SeleccionarParametrosInicio(Matriz &tablero1, Matriz &tablero2, Matri
     tablero2.crear_matriz();
     tableroParaDisparar.crear_matriz();
 
-    cout<<"Elija cantidad de Barcos: ";
-    cin>>cant;
+    cout<<"\nDIVIERTASE O MUERA!!!\n"<<endl;
 
     this->crearBarcos(cant);
 }
@@ -51,8 +53,11 @@ void Menu::jugar()
 
         }else if(respuestaAleatorio == 'N' || respuestaAleatorio == 'n'){
             for(Barco *b : this->Barcos){
+                cout<<"\n          TABLERO USER"<<endl;
+                tablero1.mostrar_matriz();
                 agregarManual(this->tablero1,b);
                 agregarAleatorios(this->tablero2,b);
+                this->cleanWindows();
             }
         }
 
@@ -79,10 +84,10 @@ void Menu::jugar()
             tablero1.mostrarFlota();
             cout<<endl;
 
-           cout<<"          TABLERO IA"<<endl;
-            tablero2.mostrar_matriz();
-            tablero2.mostrarFlota();
-           cout<<endl;
+//            cout<<"          TABLERO IA"<<endl;
+//            tablero2.mostrar_matriz();
+//            tablero2.mostrarFlota();
+//            cout<<endl;
 
             cout<<"DISPARE"<<endl;
             cout<<"x: ";
@@ -147,6 +152,11 @@ void Menu::agregarManual(Matriz &tb, Barco *barco)
     cout<<"posicion x: ";cin>>x;
     cout<<"posicion y: ";cin>>y;
     cout<<"orientacion H/V: ";cin>>orientacion;
+
+    if(orientacion=='v')
+        orientacion='V';
+    if(orientacion=='h')
+        orientacion='H';
 
     while(!tb.lugarDisponible(x,y,barco->getTamanio(),orientacion)){
         cout<<"\n\nNO SE PUEDE ESA POSICION"<<endl;
