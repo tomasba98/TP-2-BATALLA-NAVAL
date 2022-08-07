@@ -8,10 +8,11 @@ class Matriz
 {
 private:
     char **matriz;
-    int tamanioMatriz = 10;
+    int tamanioMatriz = 11;
     int numBarcos;
     std::vector <Barco> cantBarcos;
     bool hit;
+    char submarinoHitChar = 'K';
 
 public:
     Matriz();
@@ -31,18 +32,8 @@ public:
     bool matrizHit();
     void modificarMatriz(int,int,char);
     void mostrarFlota();
-    void setChar(char,int x,int y);
-    char getChar(int x, int y);
-
-     /*friend char  operator[] (int num){
-          assert(num>=0 && num<size);   //prueba si num est  en el rango
-          return (ptr[num]);
-    }
-
-     friend std::ostream&  operator[] (std::ostream& os,Matriz& obj){
-              this->obj[//prueba si num est  en el rango
-           return (ptr[num]);
-     }*/
+    char submarinoHit();
+    bool lugarLancha(int, int, int, char);
 };
 
 #endif // MATRIZ_H

@@ -33,11 +33,12 @@ void Barco::hit()
     if(this->getVida()!=0){
         this->setVida(this->getVida()-1);
         std::cout<<"Barco was hit!!"<<std::endl;;
-        if(this->getVida()==0){
-            std::cout<<std::endl;
-            std::cout<<this->nombre<<" hundido!!!\n";
-            }
     }
+    if(this->getVida()==0){
+        std::cout<<std::endl;
+        std::cout<<this->nombre<<" hundido!!!\n";
+    }
+
 }
 
 int Barco::getY() const
@@ -49,8 +50,6 @@ void Barco::setY(int newY)
 {
     Y = newY;
 }
-
-
 
 int Barco::getX() const
 {

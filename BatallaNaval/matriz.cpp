@@ -38,15 +38,13 @@ void Matriz::mostrarFlota()
     }
 }
 
-void Matriz::setChar(char c, int x, int y)
+
+char Matriz::submarinoHit()
 {
-    this->matriz[y][x]= c;
+    return this->submarinoHitChar;
 }
 
-char Matriz::getChar(int x, int y)
-{
-    return this->matriz[y][x];
-}
+
 
 void Matriz::chequearVector()
 {
@@ -69,43 +67,61 @@ void Matriz::setTamanioMatriz(int newTamanioMatriz)
 
 bool Matriz::lugarDisponible(int posX, int posY, int tamanio, char orientacion)
 {
-    bool disponibilidad = false;
-
     int tamanioMatr = this->getTamanioMatriz();
     int tamanioX = posX+tamanio;
     int tamanioY = posY+tamanio;
 
-    if(((posX>0) && (posX<tamanioMatr)) && ((posY>0) && (posY<tamanioMatr))){
+
+    if(((posX>0) && (posX<tamanioMatr-1)) && ((posY>0) && (posY<tamanioMatr-1))){
         switch(orientacion){
         case 'H':
-            if(tamanioX<=tamanioMatr){
-                for (int i=0;i<tamanio;i++){
-                    if((matriz[posY][posX+i] != '~')){
-                        return disponibilidad;
+            if(tamanioX<tamanioMatr){
+                if(matriz[posY][posX-1] == '~' && matriz[posY][tamanioX] == '~'){
+                    for (int i=0;i<tamanio;i++){
+                        if(matriz[posY][posX+i] != '~'){
+                            return false;
+                        }
                     }
+                    for (int i=0;i<tamanio;i++){
+                        if((matriz[posY-1][posX+i] != '~')||(matriz[posY+1][posX+i] != '~')){
+                            return false;
+                        }
+                    }
+                }else{
+                    return false;
                 }
+                return true;
             }else{
-                return disponibilidad;
+                return false;
             }
-
-            return true;
             break;
         case 'V':
-            if(tamanioY<=tamanioMatr){
-                for (int i=0;i<tamanio;i++){
-                    if((matriz[posY+i][posX] != '~')){
-                        return disponibilidad;
+            if(tamanioY<tamanioMatr){
+                if(matriz[posY-1][posX] == '~' && matriz[tamanioY][posX] == '~'){
+                    for (int i=0;i<tamanio;i++){
+                        if(matriz[posY+i][posX] != '~'){
+                            return false;
+                        }
+                        for (int i=0;i<tamanio;i++){
+                            if((matriz[posY+i][posX-1] != '~')||(matriz[posY+i][posX+1] != '~')){
+                                return false;
+                            }
+                        }
                     }
+                }else{
+                    return false;
                 }
+                return true;
             }else{
-                return disponibilidad;
+                return false;
             }
-            return true;
             break;
         }
     }else{
-        return disponibilidad;
+        return false;
     }
+
+
 }
 
 int Matriz::disparar(int x, int y)
@@ -118,11 +134,13 @@ int Matriz::disparar(int x, int y)
         case '~':
             this->matriz[y][x] = 'O';
             this->hit = false;
+            this->submarinoHitChar = 'K';
             std::cout<<"\nShot Agua!\n";
             break;
         case '1':
             this->matriz[y][x] = 'X';
             this->hit = true;
+            this->submarinoHitChar = 'K';
             for (Barco &b : this->cantBarcos){
                 if(b.getNum()=='1'){
                     b.hit();
@@ -136,6 +154,7 @@ int Matriz::disparar(int x, int y)
         case '3':
             this->matriz[y][x] = 'X';
             this->hit = true;
+            this->submarinoHitChar = 'K';
             for (Barco &b : this->cantBarcos){
                 if(b.getNum()=='3'){
                     b.hit();
@@ -149,6 +168,7 @@ int Matriz::disparar(int x, int y)
         case '4':
             this->matriz[y][x] = 'X';
             this->hit = true;
+            this->submarinoHitChar = 'K';
             for (Barco &b : this->cantBarcos){
                 if(b.getNum()=='4'){
                     b.hit();
@@ -162,6 +182,7 @@ int Matriz::disparar(int x, int y)
         case '5':
             this->matriz[y][x] = 'X';
             this->hit = true;
+            this->submarinoHitChar = 'K';
             for (Barco &b : this->cantBarcos){
                 if(b.getNum()=='5'){
                     b.hit();
@@ -173,13 +194,14 @@ int Matriz::disparar(int x, int y)
 
             break;
         case '7':
+            this->hit = true;
             for (Barco &b : this->cantBarcos){
                 if(b.getNum()=='7'){
                     char orientacion = b.getOrientacion();
-
                     switch(orientacion){
                     case 'H':
                         if(this->matriz[y][x-1]=='7'&&this->matriz[y][x+1]=='7'){
+                            this->submarinoHitChar = 'H';
                             b.setVida(0);
                             b.hit();
                             this->matriz[y][x]='X';
@@ -198,6 +220,7 @@ int Matriz::disparar(int x, int y)
                         break;
                     case 'V':
                         if(this->matriz[y-1][x]=='7'&&this->matriz[y+1][x]=='7'){
+                            this->submarinoHitChar = 'V';
                             b.setVida(0);
                             b.hit();
                             this->matriz[y][x]='X';
@@ -227,6 +250,46 @@ int Matriz::disparar(int x, int y)
     this->moverLancha();
 }
 
+bool Matriz::lugarLancha(int posX, int posY, int tamanio, char orientacion)
+{
+
+    int tamanioMatr = this->getTamanioMatriz();
+    int tamanioX = posX+tamanio;
+    int tamanioY = posY+tamanio;
+
+    if(((posX>0) && (posX<tamanioMatr)) && ((posY>0) && (posY<tamanioMatr))){
+        switch(orientacion){
+        case 'H':
+            if(tamanioX<=tamanioMatr){
+                for (int i=0;i<tamanio;i++){
+                    if((matriz[posY][posX+i] != '~')){
+                        return false;
+                    }
+                }
+            }else{
+                return false;
+            }
+
+            return true;
+            break;
+        case 'V':
+            if(tamanioY<=tamanioMatr){
+                for (int i=0;i<tamanio;i++){
+                    if((matriz[posY+i][posX] != '~')){
+                        return false;
+                    }
+                }
+            }else{
+                return false;
+            }
+            return true;
+            break;
+        }
+    }else{
+        return false;
+    }
+}
+
 void Matriz::moverLancha()
 {
     bool sePudo = true;
@@ -242,43 +305,43 @@ void Matriz::moverLancha()
                 switch(posMovimiento){
                 case 0:
                     //ARRIBA
-                    if(this->lugarDisponible(b.getX(), b.getY()-1, b.getTamanio(), 'V')){
+                    if(this->lugarLancha(b.getX(), b.getY()-1, b.getTamanio(), 'V')){
                         this->matriz[b.getY()][b.getX()]= '~';
                         b.setY(b.getY()-1);
                         b.setOrientacion('V');
                         this->matriz[b.getY()][b.getX()]= '1';
+                        sePudo = false;
                     }
-                    sePudo = false;
                     break;
                 case 1:
                     //ABAJO
-                    if(this->lugarDisponible(b.getX(), b.getY()+1, b.getTamanio(), 'V')){
+                    if(this->lugarLancha(b.getX(), b.getY()+1, b.getTamanio(), 'V')){
                         this->matriz[b.getY()][b.getX()]= '~';
                         b.setY(b.getY()+1);
                         b.setOrientacion('V');
                         this->matriz[b.getY()][b.getX()]= '1';
+                        sePudo = false;
                     }
-                    sePudo = false;
                     break;
                 case 2:
                     //IZQUIERDA
-                    if(this->lugarDisponible(b.getX()-1, b.getY(), b.getTamanio(), 'H')){
+                    if(this->lugarLancha(b.getX()-1, b.getY(), b.getTamanio(), 'H')){
                         this->matriz[b.getY()][b.getX()]= '~';
                         b.setX(b.getX()-1);
                         b.setOrientacion('H');
                         this->matriz[b.getY()][b.getX()]= '1';
+                        sePudo = false;
                     }
-                    sePudo = false;
                     break;
                 case 3:
                     //DERECHA
-                    if(this->lugarDisponible(b.getX()+1, b.getY(), b.getTamanio(), 'H')){
+                    if(this->lugarLancha(b.getX()+1, b.getY(), b.getTamanio(), 'H')){
                         this->matriz[b.getY()][b.getX()]= '~';
                         b.setX(b.getX()+1);
                         b.setOrientacion('H');
                         this->matriz[b.getY()][b.getX()]= '1';
+                        sePudo = false;
                     }
-                    sePudo = false;
                     break;
                 }
             }
@@ -296,7 +359,6 @@ void Matriz::eliminarBarco(Barco b)
     }
     this->cantBarcos = aux;
     this->numBarcos--;
-    this->chequearVector();
 }
 
 

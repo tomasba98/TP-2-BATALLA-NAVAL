@@ -15,7 +15,7 @@ Menu::Menu()
 void Menu::jugar()
 {
     while(!gameOver){
-
+        cout<<"--------BATALLA NAVAL MALVINAS-----------\n";
         int cant;
         cout<<"Elija cantidad de Barcos: ";
         cin>>cant;
@@ -36,12 +36,25 @@ void Menu::jugar()
         }else if(respuestaAleatorio == 'N' || respuestaAleatorio == 'n'){
             for(Barco *b : this->Barcos){
                 agregarManual(this->tablero1,b);
-                agregarManual(this->tablero2,b);
+                agregarAleatorios(this->tablero2,b);
             }
         }
+        int x,y = 0;
+
 
         while(tablero1.getNumBarcos()!=0 && tablero2.getNumBarcos()!=0){
+
             this->cleanWindows();
+
+            cout<<"--------BATALLA NAVAL MALVINAS-----------\n";
+            if(y!=0){
+                cout<<"DISPARO USER:";
+                this->tablero2.disparar(x,y);
+                cout<<"\nDISPARO IA:";
+                this->dispararBot(this->tablero1);
+                cout<<endl;
+                this->copiarTableroParaDisparar(tablero2,x,y);
+            }
             cout<<"          MONITOR SHOTS"<<endl;
             this->tableroParaDisparar.mostrar_matriz();
             cout<<endl;
@@ -50,33 +63,17 @@ void Menu::jugar()
             tablero1.mostrarFlota();
             cout<<endl;
 
-            int x,y;
-            cout<<"\nDISPARE"<<endl;
+//            cout<<"          TABLERO IA"<<endl;
+//            tablero2.mostrar_matriz();
+//            tablero2.mostrarFlota();
+//            cout<<endl;
+
+            cout<<"DISPARE"<<endl;
             cout<<"x: ";
             cin>>x;
             cout<<"y: ";
-            cin>>y;
+            cin>>y;            
 
-            this->tablero2.disparar(x,y);
-
-            //            cout<<"          TABLERO 2"<<endl;
-            //            tablero2.mostrar_matriz();
-            //            tablero2.mostrarFlota();
-            //            cout<<endl;
-
-            this->copiarTableroParaDisparar(tablero2,x,y);
-
-
-            cout<<endl<<"DISPARO IA:";
-            this->dispararBot(this->tablero1);
-            cout<<endl;
-            cout<<"          MONITOR SHOTS"<<endl;
-            this->tableroParaDisparar.mostrar_matriz();
-            cout<<endl;
-            cout<<"          TABLERO USER"<<endl;
-            tablero1.mostrar_matriz();
-            tablero1.mostrarFlota();
-            cout<<endl;
         }
 
         if(tablero1.getNumBarcos()==0 && tablero2.getNumBarcos()==0){
@@ -194,23 +191,19 @@ void Menu::crearBarcos(int cant)
 
 void Menu::copiarTableroParaDisparar(Matriz &tb2,int x, int y)
 {
-
-//    for(int i=1;i<tb2.getTamanioMatriz();i++){
-//        for(int j=1;i<tb2.getTamanioMatriz();j++){
-//            this->tableroParaDisparar.modificarMatriz(x,y,'~');
-//            if(tb2.getChar(i,j)=='X'){
-//                this->tableroParaDisparar.modificarMatriz(x,y,'X');
-//            }
-//            if(tb2.getChar(i,j)=='O'){
-//                this->tableroParaDisparar.modificarMatriz(x,y,'O');
-//            }
-//        }
-//    }
-
-    if(tablero2.matrizHit()){
+    if(tb2.matrizHit()){
         this->tableroParaDisparar.modificarMatriz(x,y,'X');
     }else{
         this->tableroParaDisparar.modificarMatriz(x,y,'O');
+    }
+    char orientacion = tb2.submarinoHit();
+    if(orientacion=='H'){
+        this->tableroParaDisparar.modificarMatriz(x-1,y,'X');
+        this->tableroParaDisparar.modificarMatriz(x+1,y,'X');
+    }
+    if(orientacion=='V'){
+        this->tableroParaDisparar.modificarMatriz(x,y-1,'X');
+        this->tableroParaDisparar.modificarMatriz(x,y+1,'X');
     }
 }
 
