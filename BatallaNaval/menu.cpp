@@ -6,25 +6,41 @@ using namespace std;
 Menu::Menu()
 {
     gameOver = false;
+
+}
+
+void Menu::SeleccionarParametrosInicio(Matriz &tablero1, Matriz &tablero2, Matriz &tableroParaDisparar)
+{
+    int cant;
+    int tamañoMatriz;
+
+    cout<<"Elija tamano del tablero: ";
+    cin>>tamañoMatriz;
+
+    tablero1.setTamanioMatriz(tamañoMatriz);
+    tablero2.setTamanioMatriz(tamañoMatriz);
+    tableroParaDisparar.setTamanioMatriz(tamañoMatriz);
+
     tablero1.crear_matriz();
     tablero2.crear_matriz();
     tableroParaDisparar.crear_matriz();
 
+    cout<<"Elija cantidad de Barcos: ";
+    cin>>cant;
+
+    this->crearBarcos(cant);
 }
 
 void Menu::jugar()
 {
     while(!gameOver){
         cout<<"--------BATALLA NAVAL MALVINAS-----------\n";
-        int cant;
-        cout<<"Elija cantidad de Barcos: ";
-        cin>>cant;
-        this->crearBarcos(cant);
-        char respuestaAleatorio;
 
+        SeleccionarParametrosInicio(tablero1, tablero2, tableroParaDisparar);
+
+        char respuestaAleatorio;
         cout<<"Desea agregar aleatoriamente los barcos? (S/N): ";
         cin>>respuestaAleatorio;
-
 
         if(respuestaAleatorio == 'S' || respuestaAleatorio == 's'){
             for(Barco *b : this->Barcos){
@@ -39,11 +55,11 @@ void Menu::jugar()
                 agregarAleatorios(this->tablero2,b);
             }
         }
+
+
         int x,y = 0;
 
-
-        while(tablero1.getNumBarcos()!=0 && tablero2.getNumBarcos()!=0){
-
+        do{
             this->cleanWindows();
 
             cout<<"--------BATALLA NAVAL MALVINAS-----------\n";
@@ -63,18 +79,19 @@ void Menu::jugar()
             tablero1.mostrarFlota();
             cout<<endl;
 
-//            cout<<"          TABLERO IA"<<endl;
-//            tablero2.mostrar_matriz();
-//            tablero2.mostrarFlota();
-//            cout<<endl;
+           cout<<"          TABLERO IA"<<endl;
+            tablero2.mostrar_matriz();
+            tablero2.mostrarFlota();
+           cout<<endl;
 
             cout<<"DISPARE"<<endl;
             cout<<"x: ";
             cin>>x;
             cout<<"y: ";
-            cin>>y;            
+            cin>>y;
+        }while(tablero1.getNumBarcos()!=0 && tablero2.getNumBarcos()!=0);
 
-        }
+
 
         if(tablero1.getNumBarcos()==0 && tablero2.getNumBarcos()==0){
             cout<<endl;
@@ -165,7 +182,7 @@ void Menu::crearBarcos(int cant)
     Barco *submarino = new Submarino;
 
     for(int i=0;i<cant;i++){
-        tipo = rand()% cant;
+        //tipo = rand()% cant;
         tipo = i;
         switch(tipo){
 

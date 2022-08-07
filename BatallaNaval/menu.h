@@ -31,6 +31,7 @@ public:
     void crearBarcos(int );
     void copiarTableroParaDisparar(Matriz &,int , int );
     void cleanWindows();
+    void SeleccionarParametrosInicio(Matriz &tablero1, Matriz &tablero2, Matriz &tableroParaDisparar);
 };
 
 #endif // MENU_H

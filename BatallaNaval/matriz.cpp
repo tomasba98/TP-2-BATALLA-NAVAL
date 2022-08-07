@@ -372,15 +372,27 @@ void Matriz::crear_matriz(){
     }
 
     //BORDES
-    int A = 64;
-    int num = 48;
-    for(int i=0;i<this->tamanioMatriz;i++){
-        //this->matriz[i][0]= A;    LETRAS
-        this->matriz[i][0]= num;
-        this->matriz[0][i]= num;
-        A +=1;
-        num+=1;
-    }
+        int A = 64;
+        char num = 48;
+        char num2Ble = 48;
+
+        for(int i=0;i<this->tamanioMatriz;i++){
+//            this->matriz[i][0]= A;  LETRAS
+//            A +=1;
+            if(num > 57){
+                this->matriz[0][i] = char(num2Ble);
+                this->matriz[i][0] = char(num2Ble);
+                this->matriz[0][10] = 'X';
+                this->matriz[10][0] = 'X';
+                num2Ble += 1;
+            }else{
+                this->matriz[i][0]= num;
+                this->matriz[0][i]= num;
+
+                num+=1;
+            }
+        }
+
 
     //RELLENAR " ~ "
     for(int i=1;i<this->tamanioMatriz;i++){
