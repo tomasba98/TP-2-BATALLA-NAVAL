@@ -153,18 +153,48 @@ int Matriz::disparar(int x, int y)
             break;
         case '3':
             this->matriz[y][x] = 'X';
-            this->hit = true;
-            this->submarinoHitChar = 'K';
-            for (Barco &b : this->cantBarcos){
-                if(b.getNum()=='3'){
-                    b.hit();
-                    if(b.explotado()){
-                        this->eliminarBarco(b);
-                    }
-                }
-            }
+                        this->hit = true;
+                        this->submarinoHitChar = 'K';
+                        for (Barco &b : this->cantBarcos){
+                            if(b.getNum()=='3'){
+                                if(b.getOrientacion()=='H'){
+                                    int BarcoY = b.getY();
+                                    if(BarcoY==y){
+                                        int BarcoX = b.getX();
+                                        int tamanio =b.getTamanio();
+                                        for (int i=0;i<=tamanio;i++){
+                                            if(BarcoX==x){
+                                                b.hit();
+                                                if(b.explotado()){
+                                                    this->eliminarBarco(b);
+                                                }
+                                            }
+                                            BarcoX +=1;
+                                        }
+                                    }
 
-            break;
+                                }
+                                if(b.getOrientacion()=='V'){
+                                    int BarcoX = b.getX();
+                                    if(BarcoX==x){
+                                        int BarcoY = b.getY();
+                                        int tamanio =b.getTamanio();
+                                        for (int i=0;i<=tamanio;i++){
+                                            if(BarcoY==y){
+                                                b.hit();
+                                                if(b.explotado()){
+                                                    this->eliminarBarco(b);
+                                                }
+                                            }
+                                            BarcoY +=1;
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+
+                        break;
         case '4':
             this->matriz[y][x] = 'X';
             this->hit = true;
@@ -351,6 +381,20 @@ void Matriz::moverLancha()
 
 void Matriz::eliminarBarco(Barco b)
 {   std::vector <Barco> aux;
+    for (Barco a : this->cantBarcos){
+        if(a.getX()!=b.getX() && a.getY()!=b.getY()){
+            aux.push_back(a);
+        }
+    }
+    this->cantBarcos = aux;
+    //aux.end();
+    this->numBarcos--;
+    //this->chequearVector();
+
+
+
+
+    /*std::vector <Barco> aux;
 
     for (Barco a : this->cantBarcos){
         if(a.getNum()!=b.getNum()){
@@ -358,7 +402,7 @@ void Matriz::eliminarBarco(Barco b)
         }
     }
     this->cantBarcos = aux;
-    this->numBarcos--;
+    this->numBarcos--;*/
 }
 
 

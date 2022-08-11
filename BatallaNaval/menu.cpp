@@ -84,10 +84,10 @@ void Menu::jugar()
             tablero1.mostrarFlota();
             cout<<endl;
 
-//            cout<<"          TABLERO IA"<<endl;
-//            tablero2.mostrar_matriz();
-//            tablero2.mostrarFlota();
-//            cout<<endl;
+            cout<<"          TABLERO IA"<<endl;
+            tablero2.mostrar_matriz();
+            tablero2.mostrarFlota();
+            cout<<endl;
 
             cout<<"DISPARE"<<endl;
             cout<<"x: ";
@@ -193,7 +193,7 @@ void Menu::crearBarcos(int cant)
 
     for(int i=0;i<cant;i++){
         //tipo = rand()% cant;
-        tipo = i;
+        tipo = 0;
         switch(tipo){
 
         case 0:
