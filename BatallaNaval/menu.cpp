@@ -19,7 +19,6 @@ void Menu::SeleccionarParametrosInicio(Matriz &tablero1, Matriz &tablero2, Matri
     cin>>cant;
     cout<<"Elija tamanio del tablero: ";
     cin>>tamañoMatriz;
-    tamañoMatriz+=3;
     tablero1.setTamanioMatriz(tamañoMatriz);
     tablero2.setTamanioMatriz(tamañoMatriz);
     tableroParaDisparar.setTamanioMatriz(tamañoMatriz);
@@ -123,10 +122,11 @@ void Menu::agregarAleatorios(Matriz &tb, Barco *barco)
     int x;
     int y;
     int orientacion;
+    int tamanio = tb.getTamanioMatriz();
 
     do{
-        x = rand()%9+1;
-        y = rand()%9+1;
+        x = rand()%tamanio;
+        y = rand()%tamanio;
         orientacion = rand()%2;
 
         if(orientacion == 1){
@@ -191,11 +191,9 @@ void Menu::crearBarcos(int cant)
     Barco *lancha = new Lancha;
     Barco *submarino = new Submarino;
 
-    for(int i=0;i<cant;i++){
-        //tipo = rand()% cant;
-        tipo = 0;
+    for(int i=0;i<cant;i++){        
+        tipo = rand()% 5;
         switch(tipo){
-
         case 0:
             this->Barcos.push_back(crucero);
             break;

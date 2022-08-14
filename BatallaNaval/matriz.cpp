@@ -143,67 +143,100 @@ int Matriz::disparar(int x, int y)
             this->submarinoHitChar = 'K';
             for (Barco &b : this->cantBarcos){
                 if(b.getNum()=='1'){
-                    b.hit();
-                    if(b.explotado()){
-                        this->eliminarBarco(b);
+                    if(x==b.getX() && y==b.getY()){
+                        b.hit();
+                        if(b.explotado()){
+                            this->eliminarBarco(b);
+                        }
                     }
+
                 }
             }
 
             break;
         case '3':
             this->matriz[y][x] = 'X';
-                        this->hit = true;
-                        this->submarinoHitChar = 'K';
-                        for (Barco &b : this->cantBarcos){
-                            if(b.getNum()=='3'){
-                                if(b.getOrientacion()=='H'){
-                                    int BarcoY = b.getY();
-                                    if(BarcoY==y){
-                                        int BarcoX = b.getX();
-                                        int tamanio =b.getTamanio();
-                                        for (int i=0;i<=tamanio;i++){
-                                            if(BarcoX==x){
-                                                b.hit();
-                                                if(b.explotado()){
-                                                    this->eliminarBarco(b);
-                                                }
-                                            }
-                                            BarcoX +=1;
-                                        }
-                                    }
-
-                                }
-                                if(b.getOrientacion()=='V'){
-                                    int BarcoX = b.getX();
-                                    if(BarcoX==x){
-                                        int BarcoY = b.getY();
-                                        int tamanio =b.getTamanio();
-                                        for (int i=0;i<=tamanio;i++){
-                                            if(BarcoY==y){
-                                                b.hit();
-                                                if(b.explotado()){
-                                                    this->eliminarBarco(b);
-                                                }
-                                            }
-                                            BarcoY +=1;
-                                        }
-
+            this->hit = true;
+            this->submarinoHitChar = 'K';
+            for (Barco &b : this->cantBarcos){
+                if(b.getNum()=='3'){
+                    if(b.getOrientacion()=='H'){
+                        int BarcoY = b.getY();
+                        if(BarcoY==y){
+                            int BarcoX = b.getX();
+                            int tamanio =b.getTamanio();
+                            for (int i=0;i<=tamanio;i++){
+                                if(BarcoX==x){
+                                    b.hit();
+                                    if(b.explotado()){
+                                        this->eliminarBarco(b);
                                     }
                                 }
+                                BarcoX +=1;
                             }
                         }
 
-                        break;
+                    }
+                    if(b.getOrientacion()=='V'){
+                        int BarcoX = b.getX();
+                        if(BarcoX==x){
+                            int BarcoY = b.getY();
+                            int tamanio =b.getTamanio();
+                            for (int i=0;i<=tamanio;i++){
+                                if(BarcoY==y){
+                                    b.hit();
+                                    if(b.explotado()){
+                                        this->eliminarBarco(b);
+                                    }
+                                }
+                                BarcoY +=1;
+                            }
+
+                        }
+                    }
+                }
+            }
+
+            break;
         case '4':
             this->matriz[y][x] = 'X';
             this->hit = true;
             this->submarinoHitChar = 'K';
             for (Barco &b : this->cantBarcos){
                 if(b.getNum()=='4'){
-                    b.hit();
-                    if(b.explotado()){
-                        this->eliminarBarco(b);
+                    if(b.getOrientacion()=='H'){
+                        int BarcoY = b.getY();
+                        if(BarcoY==y){
+                            int BarcoX = b.getX();
+                            int tamanio =b.getTamanio();
+                            for (int i=0;i<=tamanio;i++){
+                                if(BarcoX==x){
+                                    b.hit();
+                                    if(b.explotado()){
+                                        this->eliminarBarco(b);
+                                    }
+                                }
+                                BarcoX +=1;
+                            }
+                        }
+
+                    }
+                    if(b.getOrientacion()=='V'){
+                        int BarcoX = b.getX();
+                        if(BarcoX==x){
+                            int BarcoY = b.getY();
+                            int tamanio =b.getTamanio();
+                            for (int i=0;i<=tamanio;i++){
+                                if(BarcoY==y){
+                                    b.hit();
+                                    if(b.explotado()){
+                                        this->eliminarBarco(b);
+                                    }
+                                }
+                                BarcoY +=1;
+                            }
+
+                        }
                     }
                 }
             }
@@ -215,9 +248,39 @@ int Matriz::disparar(int x, int y)
             this->submarinoHitChar = 'K';
             for (Barco &b : this->cantBarcos){
                 if(b.getNum()=='5'){
-                    b.hit();
-                    if(b.explotado()){
-                        this->eliminarBarco(b);
+                    if(b.getOrientacion()=='H'){
+                        int BarcoY = b.getY();
+                        if(BarcoY==y){
+                            int BarcoX = b.getX();
+                            int tamanio =b.getTamanio();
+                            for (int i=0;i<=tamanio;i++){
+                                if(BarcoX==x){
+                                    b.hit();
+                                    if(b.explotado()){
+                                        this->eliminarBarco(b);
+                                    }
+                                }
+                                BarcoX +=1;
+                            }
+                        }
+
+                    }
+                    if(b.getOrientacion()=='V'){
+                        int BarcoX = b.getX();
+                        if(BarcoX==x){
+                            int BarcoY = b.getY();
+                            int tamanio =b.getTamanio();
+                            for (int i=0;i<=tamanio;i++){
+                                if(BarcoY==y){
+                                    b.hit();
+                                    if(b.explotado()){
+                                        this->eliminarBarco(b);
+                                    }
+                                }
+                                BarcoY +=1;
+                            }
+
+                        }
                     }
                 }
             }
@@ -227,6 +290,68 @@ int Matriz::disparar(int x, int y)
             this->hit = true;
             for (Barco &b : this->cantBarcos){
                 if(b.getNum()=='7'){
+                    if(b.getOrientacion()=='H'){
+                        int BarcoY = b.getY();
+                        if(BarcoY==y){
+                            int BarcoX = b.getX();
+                            int tamanio =b.getTamanio();
+                            for (int i=0;i<=tamanio;i++){
+                                if(BarcoX==x){
+                                    if(this->matriz[y][x-1]=='7'&&this->matriz[y][x+1]=='7'){
+                                        this->submarinoHitChar = 'H';
+                                        b.setVida(0);
+                                        b.hit();
+                                        this->matriz[y][x]='X';
+                                        this->matriz[y][x-1]='X';
+                                        this->matriz[y][x+1]='X';
+                                        b.explotado();
+                                        this->eliminarBarco(b);
+                                    }else{
+                                        b.hit();
+                                        if(b.explotado()){
+                                            this->eliminarBarco(b);
+                                        }
+                                        this->matriz[y][x] = 'X';
+                                    }
+                                }
+                            }
+                            BarcoX +=1;
+                        }
+                    }
+
+                    if(b.getOrientacion()=='V'){
+
+                        int BarcoX = b.getX();
+                        if(BarcoX==x){
+                            int BarcoY = b.getY();
+                            int tamanio =b.getTamanio();
+                            for (int i=0;i<=tamanio;i++){
+                                if(BarcoY==y){
+                                    if(this->matriz[y-1][x]=='7'&&this->matriz[y+1][x]=='7'){
+                                        this->submarinoHitChar = 'V';
+                                        b.setVida(0);
+                                        b.hit();
+                                        this->matriz[y][x]='X';
+                                        this->matriz[y-1][x]='X';
+                                        this->matriz[y+1][x]='X';
+                                        b.explotado();
+                                        this->eliminarBarco(b);
+                                    }else{
+                                        b.hit();
+                                        if(b.explotado()){
+                                            this->eliminarBarco(b);
+                                        }
+                                        this->matriz[y][x] = 'X';
+                                    }
+                                }
+                            }
+                            BarcoY +=1;
+                        }
+
+                    }
+
+
+                    /*
                     char orientacion = b.getOrientacion();
                     switch(orientacion){
                     case 'H':
@@ -267,7 +392,7 @@ int Matriz::disparar(int x, int y)
                         }
 
                         break;
-                    }
+                    }*/
 
                 }
 
@@ -322,12 +447,10 @@ bool Matriz::lugarLancha(int posX, int posY, int tamanio, char orientacion)
 
 void Matriz::moverLancha()
 {
-    bool sePudo = true;
-
     for (Barco &b : this->cantBarcos){
 
         if(b.getTamanio()==1){
-
+            bool sePudo = true;
             while(sePudo){
 
                 int posMovimiento = rand()%(4);
@@ -381,11 +504,13 @@ void Matriz::moverLancha()
 
 void Matriz::eliminarBarco(Barco b)
 {   std::vector <Barco> aux;
+
     for (Barco a : this->cantBarcos){
         if(a.getX()!=b.getX() && a.getY()!=b.getY()){
             aux.push_back(a);
         }
     }
+
     this->cantBarcos = aux;
     //aux.end();
     this->numBarcos--;
@@ -415,32 +540,8 @@ void Matriz::crear_matriz(){
         this->matriz[i]=new char[this->tamanioMatriz];
     }
 
-    //BORDES
-        int A = 64;
-        char num = 48;
-        char num2Ble = 48;
-
-        for(int i=0;i<this->tamanioMatriz;i++){
-//            this->matriz[i][0]= A;  LETRAS
-//            A +=1;
-            if(num > 57){
-                this->matriz[0][i] = char(num2Ble);
-                this->matriz[i][0] = char(num2Ble);
-                this->matriz[0][10] = 'X';
-                this->matriz[10][0] = 'X';
-                num2Ble += 1;
-            }else{
-                this->matriz[i][0]= num;
-                this->matriz[0][i]= num;
-
-                num+=1;
-            }
-        }
-
-
-    //RELLENAR " ~ "
-    for(int i=1;i<this->tamanioMatriz;i++){
-        for(int j=1;j<this->tamanioMatriz;j++){
+    for(int i=0;i<this->tamanioMatriz;i++){
+        for(int j=0;j<this->tamanioMatriz;j++){
             this->matriz[i][j]= '~';
         }
 
@@ -450,12 +551,16 @@ void Matriz::crear_matriz(){
 
 void Matriz::mostrar_matriz()
 {
-    for(int i=0;i<this->tamanioMatriz;i++){
-        for(int j=0;j<this->tamanioMatriz;j++){
-            std::cout<<std::setw(3)<<this->matriz[i][j];
-        }std::cout<<std::endl;
-
-    }
+        std::cout<<std::setw(6);
+        for(int i=0; i<this->tamanioMatriz; i++)
+            std::cout<<i<<std::setw(3);
+        std::cout<<std::endl;
+        for(int i=0; i<this->tamanioMatriz; i++){
+            std::cout<<i<<std::setw(3);
+            for(int j=0; j<tamanioMatriz; j++)
+                std::cout<<matriz[i][j]<<std::setw(3);
+            std::cout<<std::endl;
+        }
 }
 
 void Matriz::agregar_barco(Barco *barco)
