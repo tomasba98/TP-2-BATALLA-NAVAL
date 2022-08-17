@@ -6,6 +6,17 @@ Barco::Barco()
 
 }
 
+int Barco::getId() const
+{
+    return id;
+}
+
+void Barco::setId(int newId)
+{
+    id = newId;
+}
+
+
 const std::string &Barco::getNombre() const
 {
     return nombre;

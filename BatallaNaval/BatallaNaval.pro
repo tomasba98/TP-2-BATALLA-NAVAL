@@ -9,7 +9,6 @@ SOURCES += \
         destructor.cpp \
         lancha.cpp \
         main.cpp \
-        mapa.cpp \
         matriz.cpp \
         menu.cpp \
         portaaviones.cpp \
@@ -20,7 +19,6 @@ HEADERS += \
     crucero.h \
     destructor.h \
     lancha.h \
-    mapa.h \
     matriz.h \
     menu.h \
     portaaviones.h \

@@ -14,7 +14,6 @@ void Menu::SeleccionarParametrosInicio(Matriz &tablero1, Matriz &tablero2, Matri
     int cant;
     int tamañoMatriz;
     cout<<"-OJO! EL TAMANIO DE LA MATRIZ DEBE SER EL DOBLE DE CANTIDAD DE BARCOS"<<endl;
-    cout<<"-MAXIMO CANTIDAD DE BARCOS -> 5"<<endl;
     cout<<"\nElija cantidad de Barcos: ";
     cin>>cant;
     cout<<"Elija tamanio del tablero: ";
@@ -61,19 +60,19 @@ void Menu::jugar()
         }
 
 
-        int x,y = 0;
+        int x,y = 99999;
 
-        do{
+       while(tablero1.getNumBarcos()!=0 && tablero2.getNumBarcos()!=0){
             this->cleanWindows();
 
             cout<<"--------BATALLA NAVAL MALVINAS-----------\n";
-            if(y!=0){
+            if(y!=99999){
                 cout<<"DISPARO USER:";
                 this->tablero2.disparar(x,y);
                 cout<<"\nDISPARO IA:";
                 this->dispararBot(this->tablero1);
                 cout<<endl;
-                this->copiarTableroParaDisparar(tablero2,x,y);
+                this->copiarTableroParaDisparar(tablero2,x,y);                
             }
             cout<<"          MONITOR SHOTS"<<endl;
             this->tableroParaDisparar.mostrar_matriz();
@@ -83,17 +82,18 @@ void Menu::jugar()
             tablero1.mostrarFlota();
             cout<<endl;
 
-            cout<<"          TABLERO IA"<<endl;
-            tablero2.mostrar_matriz();
-            tablero2.mostrarFlota();
-            cout<<endl;
+//            cout<<"          TABLERO IA"<<endl;
+//            tablero2.mostrar_matriz();
+//            tablero2.mostrarFlota();
+//            cout<<endl;
 
             cout<<"DISPARE"<<endl;
             cout<<"x: ";
             cin>>x;
             cout<<"y: ";
             cin>>y;
-        }while(tablero1.getNumBarcos()!=0 && tablero2.getNumBarcos()!=0);
+
+        }
 
 
 

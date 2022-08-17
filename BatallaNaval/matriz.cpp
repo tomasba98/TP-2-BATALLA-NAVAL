@@ -312,15 +312,14 @@ int Matriz::disparar(int x, int y)
                                             this->eliminarBarco(b);
                                         }
                                         this->matriz[y][x] = 'X';
-                                    }
+                                    }                                    
                                 }
-                            }
-                            BarcoX +=1;
+                                BarcoX +=1;
+                            }                            
                         }
                     }
 
                     if(b.getOrientacion()=='V'){
-
                         int BarcoX = b.getX();
                         if(BarcoX==x){
                             int BarcoY = b.getY();
@@ -343,57 +342,13 @@ int Matriz::disparar(int x, int y)
                                         }
                                         this->matriz[y][x] = 'X';
                                     }
+
                                 }
-                            }
-                            BarcoY +=1;
+                               BarcoY +=1;
+                            }                            
                         }
 
                     }
-
-
-                    /*
-                    char orientacion = b.getOrientacion();
-                    switch(orientacion){
-                    case 'H':
-                        if(this->matriz[y][x-1]=='7'&&this->matriz[y][x+1]=='7'){
-                            this->submarinoHitChar = 'H';
-                            b.setVida(0);
-                            b.hit();
-                            this->matriz[y][x]='X';
-                            this->matriz[y][x-1]='X';
-                            this->matriz[y][x+1]='X';
-                            b.explotado();
-                            this->eliminarBarco(b);
-                        }else{
-                            b.hit();
-                            if(b.explotado()){
-                                this->eliminarBarco(b);
-                            }
-                            this->matriz[y][x] = 'X';
-                        }
-
-                        break;
-                    case 'V':
-                        if(this->matriz[y-1][x]=='7'&&this->matriz[y+1][x]=='7'){
-                            this->submarinoHitChar = 'V';
-                            b.setVida(0);
-                            b.hit();
-                            this->matriz[y][x]='X';
-                            this->matriz[y-1][x]='X';
-                            this->matriz[y+1][x]='X';
-                            b.explotado();
-                            this->eliminarBarco(b);
-                        }else{
-                            b.hit();
-                            if(b.explotado()){
-                                this->eliminarBarco(b);
-                            }
-                            this->matriz[y][x] = 'X';
-                        }
-
-                        break;
-                    }*/
-
                 }
 
             }
@@ -506,28 +461,13 @@ void Matriz::eliminarBarco(Barco b)
 {   std::vector <Barco> aux;
 
     for (Barco a : this->cantBarcos){
-        if(a.getX()!=b.getX() && a.getY()!=b.getY()){
+        if(a.getId()!=b.getId()){
             aux.push_back(a);
         }
     }
-
     this->cantBarcos = aux;
     //aux.end();
     this->numBarcos--;
-    //this->chequearVector();
-
-
-
-
-    /*std::vector <Barco> aux;
-
-    for (Barco a : this->cantBarcos){
-        if(a.getNum()!=b.getNum()){
-            aux.push_back(a);
-        }
-    }
-    this->cantBarcos = aux;
-    this->numBarcos--;*/
 }
 
 
@@ -569,8 +509,8 @@ void Matriz::agregar_barco(Barco *barco)
     char orientacion = barco->getOrientacion();
     int x = barco->getX();
     int y = barco->getY();
-    //int restoY = y-(tamanio/2);
-    //int restoX = x-(tamanio/2);
+    int id = rand()%50000;
+    barco->setId(id);
 
     switch(orientacion){
     case 'H':

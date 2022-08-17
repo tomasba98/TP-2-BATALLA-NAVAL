@@ -17,8 +17,7 @@ private:
     bool gameOver;
     Matriz tablero1;    //user
     Matriz tablero2;    //ia
-    Matriz tableroParaDisparar;    //user
-    //Matriz tablero2ParaDisparar;    //ia
+    Matriz tableroParaDisparar;    //user    
     std::vector <Barco*> Barcos;
 
 

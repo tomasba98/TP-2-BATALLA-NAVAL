@@ -12,6 +12,7 @@ private:
     int vida;
     int X;
     int Y;
+    int id;
 
 public:
     Barco();
@@ -34,6 +35,8 @@ public:
 
     const std::string &getNombre() const;
     void setNombre(const std::string &newNombre);
+    int getId() const;
+    void setId(int newId);
 };
 
 #endif // BARCO_H
